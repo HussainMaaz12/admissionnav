@@ -2,91 +2,168 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Admission Navigator - Delhi NCR Engineering</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #1a1f4d;
+            --primary-light: #2d3878;
+            --accent: #d4af37;
+            --accent-light: #f5d547;
+            --text-main: #1a1f4d;
+            --text-muted: #666b7f;
+            --bg-start: #fefdfb;
+            --bg-mid: #f5f4f7;
+            --bg-end: #f0ebe6;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #fefdfb 0%, #f5f4f7 50%, #f0ebe6 100%);
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Background Glow */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(45, 56, 120, 0.04) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
+            position: relative;
+            z-index: 1;
+            padding: 20px 0;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 3rem;
+            animation: fadeDown 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(-20px);
         }
 
         .logo {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #1a1f4d 0%, #2d3878 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #d4af37;
-            font-size: 32px;
+            color: var(--accent);
+            font-size: 2rem;
             font-family: 'Playfair Display', serif;
             font-weight: 700;
-            margin: 0 auto 30px;
-            box-shadow: 0 20px 60px rgba(26, 31, 77, 0.15);
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 20px 40px rgba(26, 31, 77, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(26, 31, 77, 0.2), inset 0 2px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 24px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            z-index: -1;
         }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3em;
-            background: linear-gradient(135deg, #1a1f4d 0%, #2d3878 50%, #1a1f4d 100%);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 60%, var(--primary) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
         }
 
         .subtitle {
-            font-size: 1.2em;
-            color: #666b7f;
-            margin-bottom: 50px;
-            font-weight: 300;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--text-muted);
+            font-weight: 400;
             letter-spacing: 0.5px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
         }
 
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 0 10px;
         }
 
         .card {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: 0 8px 32px rgba(26, 31, 77, 0.04);
-            border: 1px solid rgba(212, 175, 55, 0.12);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 40px rgba(26, 31, 77, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 1.2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
 
         .card::before {
             content: '';
@@ -94,93 +171,185 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 24px 60px rgba(212, 175, 55, 0.12), 0 0 40px rgba(212, 175, 55, 0.08);
-            border-color: rgba(212, 175, 55, 0.25);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card-icon {
-            font-size: 48px;
-            height: 70px;
+            font-size: 3rem;
+            height: 60px;
             display: flex;
             align-items: center;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .card h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8em;
-            color: #1a1f4d;
+            font-size: 1.6rem;
+            color: var(--primary);
             font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.2px;
         }
 
         .card p {
-            color: #666b7f;
-            font-size: 0.95em;
+            color: var(--text-muted);
+            font-size: 0.95rem;
             line-height: 1.6;
-            font-weight: 300;
+            font-weight: 400;
+            flex-grow: 1;
         }
 
         .card-link {
-            display: inline-block;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #d4af37 0%, #f5d547 100%);
-            color: #1a1f4d;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: var(--primary);
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 600;
+            font-size: 0.95rem;
             letter-spacing: 0.5px;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            margin-top: 10px;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .card-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
         }
 
         .card-link:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.4);
+            filter: brightness(1.05);
+        }
+
+        .card-link:hover::after {
+            transform: translateX(4px);
+        }
+
+        .card-link:active {
+            transform: translateY(1px);
         }
 
         .footer {
             text-align: center;
-            color: #999;
-            font-size: 0.9em;
-            padding-top: 40px;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: #888c9e;
+            font-size: 0.85rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(26, 31, 77, 0.08);
+            margin: 0 20px;
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.6s;
+            opacity: 0;
         }
 
+        /* Animations */
+        @keyframes fadeDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Optimization */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
+            .header {
+                margin-bottom: 2.5rem;
             }
-
-            .subtitle {
-                font-size: 1em;
-            }
-
             .cards-grid {
-                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0;
             }
-
             .card {
-                padding: 30px 25px;
+                padding: 2rem 1.5rem;
             }
         }
 
         @media (max-width: 480px) {
-            h1 {
-                font-size: 1.6em;
+            body {
+                padding: 15px;
+                align-items: flex-start;
             }
-
+            .container {
+                padding-top: 20px;
+            }
+            .logo {
+                width: 65px;
+                height: 65px;
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+            }
+            .logo::after {
+                border-radius: 18px;
+            }
+            .card {
+                padding: 1.8rem 1.5rem;
+                border-radius: 20px;
+            }
+            .card-icon {
+                font-size: 2.5rem;
+                height: 50px;
+            }
+            .card h2 {
+                font-size: 1.4rem;
+            }
             .card-link {
-                padding: 12px 20px;
-                font-size: 0.9em;
+                width: 100%;
+                padding: 14px;
+                font-size: 1rem;
+            }
+            .footer {
+                padding-top: 1.5rem;
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+        }
+
+        /* Touch Device Optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .card:hover {
+                transform: none;
+                box-shadow: 0 10px 40px rgba(26, 31, 77, 0.05);
+            }
+            .card-link:hover {
+                transform: none;
+                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            }
+            .logo:hover {
+                transform: none;
+                box-shadow: 0 20px 40px rgba(26, 31, 77, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.1);
             }
         }
     </style>
@@ -198,14 +367,14 @@
                 <div class="card-icon">📊</div>
                 <h2>Master Matrix</h2>
                 <p>Interactive college navigator with comprehensive data, filters, sortable comparison tables, and detailed institutional profiles.</p>
-                <a href="delhi_ncr_engineering_admission_navigator.html" class="card-link">Explore Navigator →</a>
+                <a href="delhi_ncr_engineering_admission_navigator.html" class="card-link">Explore Navigator</a>
             </div>
 
             <div class="card">
                 <div class="card-icon">📈</div>
                 <h2>CSE Report</h2>
                 <p>In-depth ranking report covering placements, ROI analysis, strategic categorization, and admission guidance for 15+ institutions.</p>
-                <a href="delhi_ncr_cse_colleges_report.html" class="card-link">View Report →</a>
+                <a href="delhi_ncr_cse_colleges_report.html" class="card-link">View Report</a>
             </div>
         </div>
 
