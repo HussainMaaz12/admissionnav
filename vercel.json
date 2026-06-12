@@ -1,6 +1,4 @@
 {
-  "buildCommand": "echo 'No build needed'",
-  "public": true,
   "cleanUrls": true,
   "trailingSlash": false
 }
