@@ -1,0 +1,12 @@
+{
+  "buildCommand": "echo 'No build needed'",
+  "public": true,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "/:path*.html"
+    }
+  ]
+}
