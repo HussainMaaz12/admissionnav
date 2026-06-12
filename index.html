@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admission Navigator - Delhi NCR Engineering</title>
+    <title>Login - Admission Navigator</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,204 +14,249 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #fefdfb 0%, #f5f4f7 50%, #f0ebe6 100%);
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f4d 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
         }
 
-        .container {
-            max-width: 800px;
+        /* Abstract Background Elements */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            left: -150px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, rgba(26, 31, 77, 0) 70%);
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(26, 31, 77, 0) 70%);
+            z-index: 0;
+        }
+
+        .login-container {
             width: 100%;
+            max-width: 440px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 60px;
+        @keyframes fadeUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #1a1f4d 0%, #2d3878 100%);
-            border-radius: 20px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #d4af37 0%, #f5d547 100%);
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #d4af37;
-            font-size: 32px;
+            color: #1a1f4d;
+            font-size: 24px;
             font-family: 'Playfair Display', serif;
             font-weight: 700;
             margin: 0 auto 30px;
-            box-shadow: 0 20px 60px rgba(26, 31, 77, 0.15);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3);
+            position: relative;
         }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3em;
-            background: linear-gradient(135deg, #1a1f4d 0%, #2d3878 50%, #1a1f4d 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+        .logo::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 22px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            z-index: -1;
+            opacity: 0.5;
         }
 
-        .subtitle {
-            font-size: 1.2em;
-            color: #666b7f;
-            margin-bottom: 50px;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .header-text {
+            text-align: center;
             margin-bottom: 40px;
         }
 
-        .card {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: 0 8px 32px rgba(26, 31, 77, 0.04);
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 24px 60px rgba(212, 175, 55, 0.12), 0 0 40px rgba(212, 175, 55, 0.08);
-            border-color: rgba(212, 175, 55, 0.25);
-        }
-
-        .card-icon {
-            font-size: 48px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-        }
-
-        .card h2 {
+        .header-text h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8em;
-            color: #1a1f4d;
-            font-weight: 700;
+            font-size: 2.2em;
+            color: #ffffff;
+            margin-bottom: 10px;
             letter-spacing: 0.5px;
         }
 
-        .card p {
-            color: #666b7f;
+        .header-text p {
+            color: #a0a5c0;
             font-size: 0.95em;
-            line-height: 1.6;
             font-weight: 300;
         }
 
-        .card-link {
-            display: inline-block;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #d4af37 0%, #f5d547 100%);
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85em;
+            color: #d4af37;
+            margin-bottom: 8px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #d4af37;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+        }
+
+        .input-group input::placeholder {
+            color: #666b7f;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #d4af37 0%, #e6c555 100%);
             color: #1a1f4d;
-            text-decoration: none;
-            border-radius: 10px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05em;
             font-weight: 600;
             letter-spacing: 0.5px;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border: none;
             cursor: pointer;
-            text-align: center;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             margin-top: 10px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .card-link:hover {
+        .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
         }
 
-        .footer {
+        .btn-login:active {
+            transform: translateY(1px);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.85em;
             text-align: center;
-            color: #999;
-            font-size: 0.9em;
-            padding-top: 40px;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            margin-top: 15px;
+            min-height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
-
-            .subtitle {
-                font-size: 1em;
-            }
-
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .card {
-                padding: 30px 25px;
-            }
+        .footer-text {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.85em;
+            color: #666b7f;
         }
 
         @media (max-width: 480px) {
-            h1 {
-                font-size: 1.6em;
+            .login-container {
+                padding: 40px 25px;
             }
-
-            .card-link {
-                padding: 12px 20px;
-                font-size: 0.9em;
+            .header-text h1 {
+                font-size: 1.8em;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">NCR</div>
-            <h1>Admission Navigator</h1>
-            <p class="subtitle">Strategic Guides for Delhi NCR Engineering</p>
+
+    <div class="login-container">
+        <div class="logo">NCR</div>
+        <div class="header-text">
+            <h1>Welcome Back</h1>
+            <p>Sign in to access the Admission Navigator</p>
         </div>
 
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-icon">📊</div>
-                <h2>Master Matrix</h2>
-                <p>Interactive college navigator with comprehensive data, filters, sortable comparison tables, and detailed institutional profiles.</p>
-                <a href="delhi_ncr_engineering_admission_navigator.html" class="card-link">Explore Navigator →</a>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required autocomplete="off">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
             </div>
 
-            <div class="card">
-                <div class="card-icon">📈</div>
-                <h2>CSE Report</h2>
-                <p>In-depth ranking report covering placements, ROI analysis, strategic categorization, and admission guidance for 15+ institutions.</p>
-                <a href="delhi_ncr_cse_colleges_report.html" class="card-link">View Report →</a>
-            </div>
-        </div>
+            <button type="submit" class="btn-login">Secure Login</button>
+            <div id="errorMessage" class="error-message"></div>
+        </form>
 
-        <div class="footer">
-            <p>&copy; 2024 Strategic Admissions Bureau. Data sourced from NIRF, NAAC, and verified institutional reports.</p>
+        <div class="footer-text">
+            &copy; 2024 Strategic Admissions Bureau
         </div>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = document.querySelector('.btn-login');
+            btn.innerHTML = 'Authenticating...';
+            btn.style.opacity = '0.8';
+            btn.style.pointerEvents = 'none';
+
+            // Simulate network request delay
+            setTimeout(() => {
+                // For demonstration purposes, accepting any input and redirecting to the dashboard
+                window.location.href = 'dashboard.html';
+            }, 800);
+        });
+    </script>
+
 </body>
 </html>
