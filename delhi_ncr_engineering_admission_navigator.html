@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delhi NCR CSE Admissions Strategist 2024</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        royal: {
+                            50: '#faf9f8',
+                            100: '#f0f0f5',
+                            200: '#d8dde6',
+                            300: '#b8c2d1',
+                            400: '#96a9ba',
+                            500: '#7a92a7',
+                            600: '#697c97',
+                            700: '#536583',
+                            800: '#435370',
+                            900: '#1a1f4d', // Premium deep navy
+                        },
+                        gold: {
+                            50: '#fcfaf5',
+                            100: '#faf6ec',
+                            200: '#f4edcf',
+                            300: '#ecdeaa',
+                            400: '#e0c980',
+                            500: '#d4af37', // Premium gold
+                            600: '#c49a2e',
+                            700: '#a87c23',
+                            800: '#8a6220',
+                            900: '#6d4c1f',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    boxShadow: {
+                        'premium': '0 20px 60px rgba(26, 31, 77, 0.08)',
+                        'premium-lg': '0 30px 90px rgba(26, 31, 77, 0.12)',
+                        'gold-glow': '0 0 30px rgba(212, 175, 55, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fefdfb 0%, #f5f4f7 50%, #f0ebe6 100%);
+            color: #1a1a2e;
+            scroll-behavior: smooth;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.12);
+            box-shadow: 0 8px 40px rgba(26, 31, 77, 0.05);
+            position: relative;
+        }
+        .glass-nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+        }
+
+        .nav-link {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            color: #666b7f;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #d4af37, #f5d547);
+            transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover {
+            color: #1a1f4d;
+            transform: translateY(-1px);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #1a1f4d;
+            font-weight: 700;
+        }
+
+        .premium-card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(26, 31, 77, 0.04);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .premium-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+        }
+
+        .premium-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(212, 175, 55, 0.12), 0 0 40px rgba(212, 175, 55, 0.08);
+            border-color: rgba(212, 175, 55, 0.25);
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.02) 0%, transparent 100%);
+            border-radius: 12px;
+            padding: 8px;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Smooth scrollbar styling */
+        .custom-scrollbar::-webkit-scrollbar { 
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #d4af37, #c49a2e);
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #e0c980, #d4af37);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .table-fixed-head {
+            overflow-y: auto;
+            height: 550px;
+            border-radius: 12px;
+        }
+        .table-fixed-head thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(250, 249, 248, 0.95));
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.15);
+            color: #1a1f4d;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Premium input styling */
+        input[type="text"], select {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+            border: 1.5px solid rgba(212, 175, 55, 0.1) !important;
+        }
+        
+        input[type="text"]:focus, select:focus {
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.15) !important;
+            border-color: rgba(212, 175, 55, 0.4) !important;
+            background: rgba(255, 255, 255, 0.98) !important;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #1a1f4d 0%, #2d3878 50%, #1a1f4d 100%);
+            border-top-color: rgba(212, 175, 55, 0.2);
+            position: relative;
+            color: #e0e7ff;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+        }
+        
+        footer a {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            color: #d4af37;
+        }
+        
+        footer a:hover {
+            color: #f5d547;
+            text-decoration: underline;
+        }
+        /* Premium button styling */
+        button {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.5px !important;
+        }
+        
+        button:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 12px 32px rgba(212, 175, 55, 0.2) !important;
+        }
+        
+        /* Premium text styling */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .section-subtitle {
+            font-weight: 300;
+            letter-spacing: 0.3px;
+            line-height: 1.8;
+        }
+        
+        /* Smooth border styling */
+        .premium-border {
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .premium-border:hover {
+            border-color: rgba(212, 175, 55, 0.35);
+            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.05);
+        }
+        
+        /* Smooth spacing utility */
+        .premium-spacing {
+            padding: 3rem 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .premium-spacing {
+                padding: 4rem 3rem;
+            }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes goldGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); }
+            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.2); }
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation-play-state: paused;
+        }
+        .animate-on-scroll.in-view {
+            animation-play-state: running;
+        }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        
+        .royal-gradient-text {
+            background: linear-gradient(135deg, #1a1f4d 0%, #2d3878 50%, #1a1f4d 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #d4af37 0%, #f5d547 50%, #c49a2e 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 glass-nav px-6 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-royal-900 to-royal-700 rounded-xl flex items-center justify-center text-gold-400 font-serif font-bold shadow-lg shadow-royal-900/20 text-lg">NCR</div>
+                <h1 class="text-2xl font-serif font-bold tracking-tight text-royal-900">CSE Strategic Navigator</h1>
+            </div>
+            <div class="flex gap-6 md:gap-8 text-sm uppercase tracking-widest font-medium w-full md:w-auto overflow-x-auto pb-2 md:pb-0 whitespace-nowrap hide-scrollbar justify-start md:justify-end">
+                <a href="#dashboard" class="nav-link active py-1 shrink-0">Dashboard</a>
+                <a href="#matrix" class="nav-link py-1 shrink-0">Master Matrix</a>
+                <a href="#analytics" class="nav-link py-1 shrink-0">Analytics</a>
+                <a href="#deepdive" class="nav-link py-1 shrink-0">Deep Dive</a>
+                <a href="#strategy" class="nav-link py-1 shrink-0">Strategy</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-16 space-y-20 md:space-y-32">
+
+        <section id="dashboard" class="space-y-10 pt-6 animate-on-scroll in-view">
+            <div class="max-w-4xl text-center mx-auto mb-16">
+                <h2 class="text-5xl md:text-6xl font-bold font-serif royal-gradient-text mb-8 leading-tight tracking-tight">Pragmatic Analysis of B.Tech CSE Outcomes</h2>
+                <p class="text-lg text-slate-600 leading-relaxed max-w-3xl mx-auto font-light">
+                    Welcome to the strategic admission portal for Delhi NCR engineering. This tool prioritizes <strong class="text-royal-900 font-semibold">measurable career outcomes</strong> over institutional prestige, designed specifically for students seeking the highest return on investment in Computer Science Engineering.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="premium-card p-8 flex flex-col justify-between delay-100 animate-on-scroll in-view border-t-4 border-t-gold-500">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="w-10 h-10 rounded-full bg-gold-50 flex items-center justify-center text-gold-600 text-lg">🏆</span>
+                            <span class="text-[11px] font-bold text-gold-600 uppercase tracking-widest">Top Overall ROI</span>
+                        </div>
+                        <h3 class="text-3xl font-serif font-bold text-royal-900 mt-2">Galgotias GCET</h3>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-slate-100 flex justify-between items-center">
+                        <span class="text-sm font-medium text-slate-500">Score: <span class="text-royal-900 font-bold text-lg">10.0</span></span>
+                        <span class="text-sm font-medium text-slate-500">Median: <span class="text-emerald-600 font-bold text-lg">₹6.42L</span></span>
+                    </div>
+                </div>
+                <div class="premium-card p-8 flex flex-col justify-between delay-200 animate-on-scroll in-view border-t-4 border-t-blue-500">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 text-lg">🎯</span>
+                            <span class="text-[11px] font-bold text-blue-600 uppercase tracking-widest">Highest Accessibility</span>
+                        </div>
+                        <h3 class="text-3xl font-serif font-bold text-royal-900 mt-2">The NorthCap Univ</h3>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-slate-100 flex justify-between items-center">
+                        <span class="text-sm font-medium text-slate-500">Rating: <span class="text-royal-900 font-bold text-lg">4/10</span></span>
+                        <span class="text-sm font-medium text-slate-500">Median: <span class="text-emerald-600 font-bold text-lg">₹10.0L</span></span>
+                    </div>
+                </div>
+                <div class="premium-card p-8 flex flex-col justify-between delay-300 animate-on-scroll in-view border-t-4 border-t-purple-500">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 text-lg">💼</span>
+                            <span class="text-[11px] font-bold text-purple-600 uppercase tracking-widest">Best Premium Placement</span>
+                        </div>
+                        <h3 class="text-3xl font-serif font-bold text-royal-900 mt-2">JIIT Noida</h3>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-slate-100 flex justify-between items-center">
+                        <span class="text-sm font-medium text-slate-500">Avg: <span class="text-emerald-600 font-bold text-lg">₹11.28L</span></span>
+                        <span class="text-sm font-medium text-slate-500">Placement: <span class="text-royal-900 font-bold text-lg">93%</span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Master Table Section -->
+        <section id="matrix" class="space-y-12 animate-on-scroll">
+            <div class="border-l-4 border-gold-500 pl-10 mb-10">
+                <h2 class="text-5xl font-serif font-bold text-royal-900 tracking-tight">The Analytical Master Matrix</h2>
+                <p class="text-slate-600 mt-4 font-light text-lg leading-relaxed">Compare 20 leading institutions based on weighted operational factors. Filter by location or sort by any metric to find your perfect match.</p>
+            </div>
+
+            <div class="premium-card overflow-hidden">
+                <div class="p-8 border-b border-slate-100 flex flex-col md:flex-row gap-6 justify-between items-center bg-slate-50/50">
+                    <div class="relative w-full md:w-96">
+                        <svg class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <input type="text" id="tableSearch" placeholder="Search college name or location..." class="pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 transition-shadow shadow-sm">
+                    </div>
+                    <div class="flex gap-4 w-full md:w-auto">
+                        <select id="locationFilter" class="px-5 py-3 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 transition-shadow">
+                            <option value="all">All Locations</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Noida">Noida</option>
+                            <option value="Greater Noida">Greater Noida</option>
+                            <option value="Gurugram">Gurugram</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-fixed-head custom-scrollbar bg-white overflow-x-auto">
+                    <table class="w-full text-left border-collapse" id="masterTable">
+                        <thead>
+                            <tr class="text-xs uppercase tracking-widest text-slate-500 font-bold">
+                                <th class="p-6 cursor-pointer hover:bg-slate-50 hover:text-gold-600 transition-colors" data-sort="rank">Rank <span class="text-[10px]">▼</span></th>
+                                <th class="p-6 cursor-pointer hover:bg-slate-50 hover:text-gold-600 transition-colors" data-sort="name">College <span class="text-[10px]">▼</span></th>
+                                <th class="p-6 cursor-pointer hover:bg-slate-50 hover:text-gold-600 transition-colors" data-sort="cost">Total Cost (L) <span class="text-[10px]">▼</span></th>
+                                <th class="p-6 cursor-pointer hover:bg-slate-50 hover:text-gold-600 transition-colors" data-sort="median">Median (L) <span class="text-[10px]">▼</span></th>
+                                <th class="p-6 cursor-pointer hover:bg-slate-50 hover:text-gold-600 transition-colors" data-sort="placement">Placement % <span class="text-[10px]">▼</span></th>
+                                <th class="p-6 cursor-pointer hover:bg-slate-50 hover:text-gold-600 transition-colors" data-sort="roi">ROI Score <span class="text-[10px]">▼</span></th>
+                                <th class="p-6">Direct Adm</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody" class="text-sm">
+                            <!-- Rows injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Analytics Section -->
+        <section id="analytics" class="space-y-12 animate-on-scroll">
+            <div class="border-l-4 border-gold-500 pl-10 mb-10">
+                <h2 class="text-5xl font-serif font-bold text-royal-900 tracking-tight">Comparative Visual Intelligence</h2>
+                <p class="text-slate-600 mt-4 font-light text-lg leading-relaxed">Visualizing the relationship between financial investment and professional outcome. Use these charts to identify 'Efficient Frontier' colleges.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div class="premium-card p-10">
+                    <h4 class="text-xl font-serif font-bold mb-8 text-center text-royal-900">Cost vs. Median Package Efficiency</h4>
+                    <div class="chart-container">
+                        <canvas id="scatterChart"></canvas>
+                    </div>
+                    <p class="text-sm text-slate-400 mt-8 font-light text-center">Lower-right quadrant represents high-efficiency/Value-for-Money institutions.</p>
+                </div>
+                <div class="premium-card p-10">
+                    <h4 class="text-xl font-serif font-bold mb-8 text-center text-royal-900">Top 10 ROI Performers</h4>
+                    <div class="chart-container">
+                        <canvas id="roiChart"></canvas>
+                    </div>
+                    <p class="text-sm text-slate-400 mt-8 font-light text-center">Weighted Score (0-10) factoring in Fees, Package, and Admission Ease.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deep Dive Section -->
+        <section id="deepdive" class="space-y-12 animate-on-scroll">
+            <div class="border-l-4 border-gold-500 pl-10 mb-10">
+                <h2 class="text-5xl font-serif font-bold text-royal-900 tracking-tight">Institutional Deep Dive</h2>
+                <p class="text-slate-600 mt-4 font-light text-lg leading-relaxed">Select a college to view exhaustive operational details, red flags, and verified student feedback.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-10">
+                <div class="w-full md:w-1/3">
+                    <div class="sticky top-32 space-y-6">
+                        <label class="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">Select Institution</label>
+                        <div class="relative">
+                            <select id="collegeSelector" class="w-full p-4 pl-5 bg-white border border-slate-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-gold-500 appearance-none font-medium text-slate-700 transition-shadow cursor-pointer">
+                                <!-- Options injected by JS -->
+                            </select>
+                            <div class="absolute inset-y-0 right-0 flex items-center px-5 pointer-events-none text-slate-400">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                        </div>
+                        <div class="p-8 bg-gradient-to-br from-royal-900 to-royal-800 text-white rounded-3xl shadow-xl shadow-royal-900/10 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-gold-500 opacity-10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+                            <h5 class="font-serif font-bold mb-3 text-lg text-gold-400 flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Researcher Tip
+                            </h5>
+                            <p class="text-sm text-royal-100 leading-relaxed font-light">Pay close attention to the <strong class="text-white font-medium">Red Flags</strong> section for each college. It highlights the stark difference between marketing claims and actual campus reality.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3 min-h-[600px]" id="profileContainer">
+                    <!-- Dynamic Profile Injected Here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategy Section -->
+        <section id="strategy" class="space-y-12 animate-on-scroll">
+            <div class="border-l-4 border-gold-500 pl-10 mb-10">
+                <h2 class="text-5xl font-serif font-bold text-royal-900 tracking-tight">Counseling Strategy Formulation</h2>
+                <p class="text-slate-600 mt-4 font-light text-lg leading-relaxed">Categorizing the Delhi NCR landscape for an average academic profile (50-80%ile JEE).</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Tiers -->
+                <div class="premium-card p-8 border-t-4 border-t-indigo-500">
+                    <div class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 mb-4">🚀</div>
+                    <h4 class="font-serif font-bold text-xl text-royal-900 mb-2">Dream</h4>
+                    <p class="text-xs text-indigo-600 mb-6 font-medium uppercase tracking-wider">High Risk / High Reward</p>
+                    <ul class="text-sm space-y-3 text-slate-600">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span> JIIT Noida</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span> MAIT Delhi</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span> Bennett Univ</li>
+                    </ul>
+                </div>
+                <div class="premium-card p-8 border-t-4 border-t-emerald-500">
+                    <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 mb-4">✨</div>
+                    <h4 class="font-serif font-bold text-xl text-royal-900 mb-2">Target</h4>
+                    <p class="text-xs text-emerald-600 mb-6 font-medium uppercase tracking-wider">Sweet Spot Balance</p>
+                    <ul class="text-sm space-y-3 text-slate-600">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> NCU Gurugram</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> MSIT Delhi</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> GCET Greater Noida</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> GL Bajaj</li>
+                    </ul>
+                </div>
+                <div class="premium-card p-8 border-t-4 border-t-gold-500">
+                    <div class="w-10 h-10 rounded-full bg-gold-50 flex items-center justify-center text-gold-600 mb-4">🛡️</div>
+                    <h4 class="font-serif font-bold text-xl text-royal-900 mb-2">Safe</h4>
+                    <p class="text-xs text-gold-600 mb-6 font-medium uppercase tracking-wider">High Probability</p>
+                    <ul class="text-sm space-y-3 text-slate-600">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400"></span> NIET Gr. Noida</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400"></span> JSSATE Noida</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-gold-400"></span> GTBIT (Minority)</li>
+                    </ul>
+                </div>
+                <div class="premium-card p-8 border-t-4 border-t-slate-400">
+                    <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 mb-4">⚓</div>
+                    <h4 class="font-serif font-bold text-xl text-royal-900 mb-2">Very Safe</h4>
+                    <p class="text-xs text-slate-500 mb-6 font-medium uppercase tracking-wider">Direct Admission</p>
+                    <ul class="text-sm space-y-3 text-slate-600">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span> Amity Noida</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span> Galgotias Univ</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span> Sharda Univ</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-royal-900 text-white py-16 px-6 mt-20 border-t-4 border-gold-500">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
+                    <div class="w-8 h-8 bg-gold-500 rounded-lg flex items-center justify-center text-royal-900 font-serif font-bold text-xs">NCR</div>
+                    <h3 class="text-2xl font-serif font-bold text-white">Strategic Navigator</h3>
+                </div>
+                <p class="text-royal-200 text-sm font-light">Empowering students through data-driven academic choices.</p>
+            </div>
+            <div class="text-sm text-royal-300 text-center font-light">
+                &copy; 2024 Strategic Admissions Bureau.<br>All data sourced from NIRF, NAAC, and verified institutional reports.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DATA OBJECT - Preserved perfectly
+        const collegeData = [
+            { rank: 1, name: "The NorthCap University (NCU)", location: "Gurugram", cost: 9.89, median: 10.00, avg: 6.50, placement: 90.0, direct: "Yes", management: "Yes", roi: 6.16, difficulty: 4, type: "Private", established: 1996, naac: "A", nirf: "101-150", highest: 35.0, labs: 9, hostel: 8, library: 8, campus: 8, redflag: "Rigid attendance; compact campus.", pos: "Strong Gurugram corporate hub ties.", neg: "Friction regarding strict disciplinary codes.", spec: "AI, Cyber Security, Cloud, Full Stack" },
+            { rank: 2, name: "Maharaja Surajmal Inst. (MSIT)", location: "Delhi", cost: 6.01, median: 6.50, avg: 7.50, placement: 95.0, direct: "No", management: "Yes", roi: 6.87, difficulty: 6, type: "GGSIPU Affiliated", established: 2001, naac: "A", nirf: "101-150", highest: 50.0, labs: 7, hostel: 6, library: 8, campus: 5, redflag: "Very small campus (8 acres); minimal college life.", pos: "Exceptional ROI; high peer quality.", neg: "Outdated syllabus requires self-learning.", spec: "CSE Core, IT, ECE" },
+            { rank: 3, name: "Galgotias College (GCET)", location: "Greater Noida", cost: 4.62, median: 6.42, avg: 5.50, placement: 86.0, direct: "No", management: "Yes", roi: 10.00, difficulty: 5, type: "AKTU Affiliated", established: 2000, naac: "NBA", nirf: "201-300", highest: 44.0, labs: 7, hostel: 6, library: 7, campus: 6, redflag: "Mass recruiter dependency; overcrowded campus.", pos: "Lowest tuition with good placements.", neg: "Stressful AKTU exam cycles.", spec: "AI, Data Science, AI&ML, Design" },
+            { rank: 4, name: "Maharaja Agrasen (MAIT)", location: "Delhi", cost: 7.44, median: 6.00, avg: 8.00, placement: 95.0, direct: "No", management: "Yes", roi: 4.08, difficulty: 7, type: "GGSIPU Affiliated", established: 1999, naac: "NBA", nirf: "201-300", highest: 62.0, labs: 8, hostel: 6, library: 8, campus: 7, redflag: "Professors teach disparate subjects; high mgmt quota cost.", pos: "Top-tier Delhi peer group.", neg: "Pedantic faculty behavior reported.", spec: "CSE, IT, AI&ML, Data Science" },
+            { rank: 5, name: "Bennett University", location: "Greater Noida", cost: 16.15, median: 7.00, avg: 11.10, placement: 92.0, direct: "Yes", management: "Yes", roi: 0.29, difficulty: 3, type: "Private", established: 2016, naac: "A+", nirf: "101-150", highest: 137.0, labs: 10, hostel: 10, library: 9, campus: 10, redflag: "Extreme financial burden; marketing hides median truth.", pos: "World-class infrastructure; NVIDIA labs.", neg: "Requires large loans for most families.", spec: "AI/ML, IoT, Cybersecurity, Cloud" },
+            { rank: 6, name: "Jaypee Inst. (JIIT)", location: "Noida", cost: 14.42, median: 7.01, avg: 11.28, placement: 93.0, direct: "Yes", management: "Yes", roi: 0.83, difficulty: 7, type: "Deemed", established: 2001, naac: "A", nirf: "101-150", highest: 94.25, labs: 9, hostel: 8, library: 8, campus: 8, redflag: "School-like discipline; very high academic pressure.", pos: "Elite placement stats; coding culture.", neg: "Compact campus; expensive education.", spec: "CSE, IT, ECE, Math & Computing" },
+            { rank: 7, name: "BML Munjal University (BMU)", location: "Gurugram", cost: 15.20, median: 7.00, avg: 8.32, placement: 90.0, direct: "Yes", management: "Yes", roi: 0.57, difficulty: 4, type: "Private", established: 2014, naac: "A", nirf: "201-300", highest: 59.35, labs: 9, hostel: 9, library: 8, campus: 9, redflag: "No large alumni network; median lags vs fee.", pos: "Experiential learning; Hero Group backing.", neg: "Remote campus location.", spec: "IoT, Data Science, AI, Robotics" },
+            { rank: 8, name: "Amity University", location: "Noida", cost: 12.80, median: 7.00, avg: 7.40, placement: 84.0, direct: "Yes", management: "Yes", roi: 1.44, difficulty: 2, type: "Private", established: 2005, naac: "A+", nirf: "37", highest: 75.0, labs: 9, hostel: 9, library: 10, campus: 10, redflag: "Massive cohort size dilutes attention; 'pay-to-play' perception.", pos: "Unmatched collegiate lifestyle; global exposure.", neg: "Hyper-competitive for top placements.", spec: "Full Spectrum (20+ CSE types)" },
+            { rank: 9, name: "G.L. Bajaj Inst.", location: "Greater Noida", cost: 4.22, median: 4.50, avg: 7.35, placement: 90.0, direct: "No", management: "Yes", roi: 6.72, difficulty: 4, type: "AKTU Affiliated", established: 2007, naac: "A+", nirf: "151-200", highest: 58.0, labs: 8, hostel: 7, library: 8, campus: 7, redflag: "Authoritarian environment; school-like rules.", pos: "Aggressive placement cell; great ROI.", neg: "Median much lower than marketed average.", spec: "AI/ML, Data Science, Cyber Security" },
+            { rank: 10, name: "JSS Academy (JSSATE)", location: "Noida", cost: 4.94, median: 5.20, avg: 6.50, placement: 87.0, direct: "No", management: "Yes", roi: 6.58, difficulty: 5, type: "AKTU Affiliated", established: 1998, naac: "A", nirf: "201-300", highest: 57.0, labs: 7, hostel: 7, library: 8, campus: 8, redflag: "Placements dominated by service-based mass recruiters.", pos: "Prime Sector-62 location; stable outcomes.", neg: "Faculty communication issues reported.", spec: "CSE Core, AI/ML, Data Science" },
+            { rank: 11, name: "Bharati Vidyapeeth (BVCOE)", location: "Delhi", cost: 7.43, median: 6.50, avg: 7.36, placement: 82.0, direct: "No", management: "Yes", roi: 4.77, difficulty: 6, type: "GGSIPU Affiliated", established: 1999, naac: "A", nirf: "201-300", highest: 64.0, labs: 7, hostel: 5, library: 6, campus: 6, redflag: "Deteriorating placement %; poor hostel facilities.", pos: "Central Delhi location; decent brand.", neg: "Low value for money rating from students.", spec: "CSE Core, IT, AI&ML" },
+            { rank: 12, name: "Galgotias University", location: "Greater Noida", cost: 6.56, median: 5.25, avg: 5.40, placement: 86.0, direct: "Yes", management: "Yes", roi: 4.02, difficulty: 3, type: "Private", established: 2011, naac: "A+", nirf: "101-150", highest: 60.0, labs: 8, hostel: 8, library: 8, campus: 9, redflag: "Colossal student population leads to severe overcrowding.", pos: "Vibrant campus life; huge recruiter count.", neg: "Median salary anchored by mass hires.", spec: "AI/ML, Data Science, Defense Tech" },
+            { rank: 13, name: "Bhagwan Parshuram (BPIT)", location: "Delhi", cost: 6.36, median: 5.30, avg: 9.02, placement: 80.0, direct: "No", management: "Yes", roi: 4.35, difficulty: 6, type: "GGSIPU Affiliated", established: 2007, naac: "NBA", nirf: "251+", highest: 51.0, labs: 7, hostel: 6, library: 7, campus: 6, redflag: "Vast disparity between CSE and non-CSE placement.", pos: "Strong Delhi location; affordable.", neg: "Uninspiring campus aesthetics.", spec: "CSE Core, IT, Data Science" },
+            { rank: 14, name: "NIET Greater Noida", location: "Greater Noida", cost: 6.46, median: 4.52, avg: 6.00, placement: 84.0, direct: "No", management: "Yes", roi: 2.99, difficulty: 4, type: "Autonomous", established: 2001, naac: "A", nirf: "101-150", highest: 44.0, labs: 8, hostel: 7, library: 8, campus: 7, redflag: "Authoritarian admin; tier-3 mass hire culture.", pos: "Autonomous curriculum flexibility.", neg: "High volume, low-wage focus.", spec: "CSE, IT, AI, CSBS, Data Science" },
+            { rank: 15, name: "GTBIT Delhi", location: "Delhi", cost: 7.16, median: 5.00, avg: 6.50, placement: 80.0, direct: "No", management: "Yes", roi: 2.98, difficulty: 3, type: "GGSIPU Affiliated", established: 1999, naac: "A", nirf: "N/A", highest: 63.0, labs: 6, hostel: 4, library: 6, campus: 5, redflag: "Impoverished infra; no official hostels; high fees.", pos: "Minority quota makes admission easy.", neg: "Relaxed academics can lead to poor skills.", spec: "CSE Core, AI&ML, ECE" },
+            { rank: 16, name: "Sharda University", location: "Greater Noida", cost: 8.40, median: 3.40, avg: 5.00, placement: 91.0, direct: "Yes", management: "Yes", roi: 0.00, difficulty: 2, type: "Private", established: 2009, naac: "A+", nirf: "101-150", highest: 170.0, labs: 9, hostel: 9, library: 9, campus: 10, redflag: "Huge gap between marketing and median package.", pos: "Excellent global exposure; great facilities.", neg: "Very low pure financial ROI.", spec: "27 CSE Specializations" },
+            { rank: 17, name: "Jamia Hamdard", location: "Delhi", cost: 9.42, median: 5.45, avg: 5.50, placement: 76.0, direct: "Yes", management: "Yes", roi: 1.76, difficulty: 5, type: "Deemed", established: 1989, naac: "A+", nirf: "96", highest: 31.0, labs: 6, hostel: 7, library: 8, campus: 8, redflag: "Engineering is secondary to Medical; legacy labs.", pos: "South Delhi location; safe environment.", neg: "Low overall placement volume.", spec: "AI, Vision, Food Tech" },
+            { rank: 18, name: "ADGITM Delhi", location: "Delhi", cost: 5.70, median: 3.80, avg: 4.20, placement: 75.0, direct: "No", management: "Yes", roi: 2.66, difficulty: 3, type: "GGSIPU Affiliated", established: 1999, naac: "A", nirf: "N/A", highest: 44.15, labs: 6, hostel: 4, library: 6, campus: 6, redflag: "No official hostels; outdated furnishings.", pos: "Excellent public transport connectivity.", neg: "Reliance on lowest-tier mass recruiters.", spec: "CSE, IT, AI&ML" },
+            { rank: 19, name: "GNIOT Greater Noida", location: "Greater Noida", cost: 5.50, median: 3.20, avg: 4.50, placement: 75.0, direct: "No", management: "Yes", roi: 1.80, difficulty: 2, type: "AKTU Affiliated", established: 2001, naac: "A+", nirf: "N/A", highest: 70.0, labs: 6, hostel: 7, library: 7, campus: 7, redflag: "Median salary grounds out at base levels; high outliers.", pos: "Budget friendly; very easy entry.", neg: "Majority jobs are in customer support.", spec: "CSE, IT, AI&ML" },
+            { rank: 20, name: "HMR Inst. Delhi", location: "Delhi", cost: 5.40, median: 3.20, avg: 5.00, placement: 75.0, direct: "No", management: "Yes", roi: 1.91, difficulty: 2, type: "GGSIPU Affiliated", established: 2002, naac: "AICTE", nirf: "N/A", highest: 35.0, labs: 5, hostel: 4, library: 5, campus: 4, redflag: "Geographical isolation; impoverished infrastructure.", pos: "Easy entry to GGSIPU degree tag.", neg: "Volatile employment retention rates.", spec: "CSE Core, AI&ML, AI&DS" }
+        ];
+
+        // RENDER TABLE
+        function renderTable(data) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+            data.forEach(c => {
+                const row = `
+                    <tr class="border-b border-slate-50 hover:bg-slate-50/80 transition-colors group">
+                        <td class="p-6 font-serif font-bold text-slate-400 group-hover:text-gold-500 transition-colors text-base">#${c.rank}</td>
+                        <td class="p-6">
+                            <div class="font-serif font-bold text-royal-900 text-lg">${c.name}</div>
+                            <div class="text-xs text-slate-400 mt-1.5 flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                ${c.location} <span class="mx-1">•</span> ${c.type}
+                            </div>
+                        </td>
+                        <td class="p-6 text-slate-600 font-medium">₹${c.cost.toFixed(2)}</td>
+                        <td class="p-6 font-bold text-emerald-600">₹${c.median.toFixed(2)}</td>
+                        <td class="p-6">
+                            <div class="flex items-center gap-3 w-full max-w-[120px]">
+                                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-gold-400 to-gold-500 h-full rounded-full" style="width: ${c.placement}%"></div>
+                                </div>
+                                <span class="text-xs font-bold text-slate-500 w-8">${c.placement}%</span>
+                            </div>
+                        </td>
+                        <td class="p-6">
+                            <span class="px-3 py-1.5 rounded-lg bg-royal-50 border border-royal-100 font-bold text-royal-900 text-sm shadow-sm inline-block min-w-[3rem] text-center">${c.roi.toFixed(2)}</span>
+                        </td>
+                        <td class="p-6 text-sm font-medium">
+                            ${c.direct === 'Yes' 
+                                ? '<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 shadow-sm">✓</span>' 
+                                : '<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-rose-50 text-rose-500 border border-rose-100 shadow-sm">✕</span>'}
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // RENDER PROFILE
+        function renderProfile(name) {
+            const c = collegeData.find(item => item.name === name);
+            const container = document.getElementById('profileContainer');
+            
+            container.innerHTML = `
+                <div class="premium-card overflow-hidden animate-fade-up">
+                    <div class="p-10 bg-royal-900 text-white relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-gold-500 opacity-15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+                        <div class="relative z-10 flex flex-col md:flex-row justify-between items-start gap-6">
+                            <div>
+                                <h3 class="text-3xl md:text-4xl font-serif font-bold mb-3">${c.name}</h3>
+                                <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-royal-200 text-sm font-light">
+                                    <span class="flex items-center gap-1.5 text-gold-300 font-medium">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                                        ${c.location}
+                                    </span>
+                                    <span class="text-royal-600">•</span>
+                                    <span>Est. ${c.established}</span>
+                                    <span class="text-royal-600">•</span>
+                                    <span class="px-2.5 py-1 rounded-md bg-royal-800 border border-royal-700 text-xs font-medium">${c.type}</span>
+                                </div>
+                            </div>
+                            <div class="text-left md:text-right shrink-0 bg-white/5 p-5 rounded-2xl border border-white/10 backdrop-blur-md w-full md:w-auto flex flex-row md:flex-col justify-between md:justify-start items-center md:items-end">
+                                <div class="text-[10px] uppercase tracking-widest text-gold-400 mb-1 font-bold">Admission Diff.</div>
+                                <div class="text-3xl md:text-4xl font-bold font-serif flex items-baseline justify-end gap-1">
+                                    ${c.difficulty}<span class="text-base text-royal-400 font-sans font-light">/10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-10 space-y-10 bg-white">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                            <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 text-center hover:bg-gold-50/50 transition-colors duration-300">
+                                <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-2">Total Cost</div>
+                                <div class="text-2xl font-serif font-bold text-royal-900">₹${c.cost}L</div>
+                            </div>
+                            <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 text-center hover:bg-gold-50/50 transition-colors duration-300">
+                                <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-2">Median PKG</div>
+                                <div class="text-2xl font-serif font-bold text-emerald-600">₹${c.median}L</div>
+                            </div>
+                            <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 text-center hover:bg-gold-50/50 transition-colors duration-300">
+                                <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-2">NIRF Band</div>
+                                <div class="text-2xl font-serif font-bold text-royal-900">${c.nirf}</div>
+                            </div>
+                            <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 text-center hover:bg-gold-50/50 transition-colors duration-300">
+                                <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-2">Placement</div>
+                                <div class="text-2xl font-serif font-bold text-royal-900">${c.placement}%</div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div class="space-y-6">
+                                <h5 class="font-serif font-bold text-xl text-royal-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                    Infrastructure Rating
+                                </h5>
+                                <div class="grid gap-5">
+                                    ${['Campus', 'Labs', 'Hostel', 'Library'].map(key => `
+                                        <div class="flex items-center justify-between group">
+                                            <span class="text-sm font-medium text-slate-600">${key}</span>
+                                            <div class="flex gap-1.5">
+                                                ${Array.from({length: 10}).map((_, i) => `<div class="w-2.5 h-2.5 rounded-sm transition-colors ${i < c[key.toLowerCase()] ? 'bg-gold-400 shadow-sm' : 'bg-slate-100'}"></div>`).join('')}
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-6">
+                                <h5 class="font-serif font-bold text-xl text-royal-900 border-b border-slate-100 pb-3 flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                                    Specializations
+                                </h5>
+                                <div class="flex flex-wrap gap-2.5 pt-1">
+                                    ${c.spec.split(',').map(s => `<span class="px-4 py-2 bg-royal-50 border border-royal-100 text-royal-800 rounded-xl text-xs font-semibold shadow-sm transition-transform hover:-translate-y-0.5 cursor-default">${s.trim()}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                            <div class="p-6 bg-emerald-50/50 rounded-2xl border border-emerald-100 relative overflow-hidden group hover:bg-emerald-50 transition-colors">
+                                <div class="absolute top-0 left-0 w-1.5 h-full bg-emerald-400 group-hover:bg-emerald-500 transition-colors"></div>
+                                <h6 class="text-emerald-900 font-bold mb-3 text-sm uppercase tracking-widest flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    Key Positives
+                                </h6>
+                                <p class="text-sm text-emerald-800/80 leading-relaxed font-medium">${c.pos}</p>
+                            </div>
+                            <div class="p-6 bg-rose-50/50 rounded-2xl border border-rose-100 relative overflow-hidden group hover:bg-rose-50 transition-colors">
+                                <div class="absolute top-0 left-0 w-1.5 h-full bg-rose-400 group-hover:bg-rose-500 transition-colors"></div>
+                                <h6 class="text-rose-900 font-bold mb-3 text-sm uppercase tracking-widest flex items-center gap-2">
+                                    <svg class="w-4 h-4 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                    Red Flags
+                                </h6>
+                                <p class="text-sm text-rose-800/80 leading-relaxed font-medium">${c.redflag}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // CHARTS
+        function initCharts() {
+            // Setup global chart defaults for premium look
+            Chart.defaults.font.family = "'Inter', sans-serif";
+            Chart.defaults.color = '#64748b';
+            
+            // Scatter Chart
+            new Chart(document.getElementById('scatterChart'), {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Colleges',
+                        data: collegeData.map(c => ({ x: c.cost, y: c.median, label: c.name })),
+                        backgroundColor: 'rgba(197, 160, 89, 0.7)', // Gold transparent
+                        borderColor: 'rgba(197, 160, 89, 1)',
+                        borderWidth: 2,
+                        pointRadius: 6,
+                        hoverRadius: 9,
+                        pointHoverBackgroundColor: '#0F172A',
+                        pointHoverBorderColor: '#C5A059'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { 
+                            title: { display: true, text: 'Total 4-Year Cost (₹ Lakhs)', font: { weight: '600' } },
+                            grid: { color: '#f1f5f9', borderDash: [5, 5] }
+                        },
+                        y: { 
+                            title: { display: true, text: 'Median Package (₹ LPA)', font: { weight: '600' } },
+                            grid: { color: '#f1f5f9', borderDash: [5, 5] }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            titleFont: { family: "'Playfair Display', serif", size: 14 },
+                            bodyFont: { size: 13 },
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: (ctx) => ctx.raw.label + ': Cost ₹' + ctx.raw.x + 'L, Median ₹' + ctx.raw.y + 'L'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // ROI Bar Chart
+            const sortedROI = [...collegeData].sort((a, b) => b.roi - a.roi).slice(0, 10);
+            
+            // Create gradient for bars (via plugin or script - simpler to use solid royal blue)
+            new Chart(document.getElementById('roiChart'), {
+                type: 'bar',
+                data: {
+                    labels: sortedROI.map(c => c.name.split(' (')[0]),
+                    datasets: [{
+                        label: 'ROI Score',
+                        data: sortedROI.map(c => c.roi),
+                        backgroundColor: '#0F172A', // Royal blue
+                        hoverBackgroundColor: '#C5A059', // Gold on hover
+                        borderRadius: 6,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: { 
+                        x: { 
+                            max: 10,
+                            grid: { color: '#f1f5f9', borderDash: [5, 5] }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { font: { weight: '500' } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // INTERACTIVITY & ANIMATIONS
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable(collegeData);
+            initCharts();
+
+            // Populate Selector
+            const selector = document.getElementById('collegeSelector');
+            collegeData.sort((a,b) => a.name.localeCompare(b.name)).forEach(c => {
+                selector.innerHTML += `<option value="${c.name}">${c.name}</option>`;
+            });
+            renderProfile(collegeData[0].name);
+
+            selector.addEventListener('change', (e) => renderProfile(e.target.value));
+
+            // Filtering
+            document.getElementById('tableSearch').addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                const filtered = collegeData.filter(c => c.name.toLowerCase().includes(term) || c.location.toLowerCase().includes(term));
+                renderTable(filtered);
+            });
+
+            document.getElementById('locationFilter').addEventListener('change', (e) => {
+                const loc = e.target.value;
+                const filtered = loc === 'all' ? collegeData : collegeData.filter(c => c.location === loc);
+                renderTable(filtered);
+            });
+
+            // Sorting
+            let sortDir = 1;
+            document.querySelectorAll('th[data-sort]').forEach(th => {
+                th.addEventListener('click', () => {
+                    const key = th.dataset.sort;
+                    const sorted = [...collegeData].sort((a, b) => {
+                        let valA = a[key];
+                        let valB = b[key];
+                        return valA > valB ? sortDir : -sortDir;
+                    });
+                    sortDir *= -1;
+                    renderTable(sorted);
+                });
+            });
+
+            // Nav Highlighting
+            window.addEventListener('scroll', () => {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-link');
+                let current = '';
+                sections.forEach(s => {
+                    const top = s.offsetTop;
+                    if (pageYOffset >= top - 150) current = s.getAttribute('id');
+                });
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) link.classList.add('active');
+                });
+            });
+
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

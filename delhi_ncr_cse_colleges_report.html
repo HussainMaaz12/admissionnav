@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delhi NCR BTech CSE Colleges — Research Report 2025–26</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --navy: #1a1f4d;
+    --navy-dark: #0d1128;
+    --navy-mid: #2d3878;
+    --gold: #d4af37;
+    --gold-light: #f5d547;
+    --gold-dark: #b8922a;
+    --teal: #0a8fb8;
+    --teal-light: #d1f0ff;
+    --green: #2d8860;
+    --green-light: #e8f5f0;
+    --amber: #c5701e;
+    --amber-light: #fef5e7;
+    --red: #c41e3a;
+    --red-light: #ffe6e6;
+    --surface: #f5f5f7;
+    --card: #ffffff;
+    --border: #e0d9ce;
+    --shadow-light: rgba(0,0,0,0.08);
+    --shadow-mid: rgba(0,0,0,0.12);
+    --text-primary: #1a1a1a;
+    --text-secondary: #3a4559;
+    --text-muted: #8a9aaa;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; background: linear-gradient(135deg, var(--surface) 0%, #f0ebe6 100%); color: var(--text-primary); font-size:15px; line-height:1.6; min-height:100vh; }
+
+  /* HEADER — Premium Royal Gradient */
+  .report-header {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-mid) 100%);
+    color: #fff;
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  }
+  .report-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background: radial-gradient(circle at 100% 50%, rgba(212,175,55,0.08), transparent);
+    pointer-events: none;
+  }
+  .report-header .badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    color: var(--navy-dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 25px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(212,175,55,0.25);
+    animation: fadeInDown 0.8s ease-out;
+  }
+  .report-header h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.5px;
+    animation: fadeInUp 0.8s ease-out 0.1s both;
+    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.95) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .report-header .subtitle {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.05rem;
+    max-width: 750px;
+    margin: 0 auto 2rem;
+    font-weight: 300;
+    line-height: 1.7;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+  .header-meta {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+  }
+  .header-meta span {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.05);
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+  }
+  .header-meta span:hover {
+    color: var(--gold-light);
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(212,175,55,0.3);
+  }
+  .header-meta strong {
+    color: var(--gold-light);
+    font-weight: 700;
+  }
+  
+  @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* NAV TABS — Premium Gold Underline */
+  .tab-nav {
+    background: linear-gradient(90deg, var(--navy) 0%, var(--navy-mid) 100%);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 4px solid var(--gold);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tab-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.65);
+    padding: 1.2rem 1.8rem;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: inherit;
+    letter-spacing: 0.3px;
+    position: relative;
+  }
+  .tab-btn:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+  }
+  .tab-btn.active {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+  .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    animation: slideIn 0.3s ease-out;
+  }
+  @keyframes slideIn { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  /* SECTIONS */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+  .section {
+    display: none;
+    animation: fadeInSection 0.4s ease-out;
+  }
+  .section.active {
+    display: block;
+  }
+  @keyframes fadeInSection { from { opacity: 0; } to { opacity: 1; } }
+
+  /* KPI CARDS — Premium Hover Effect */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .kpi-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.6rem 1.2rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 12px var(--shadow-light);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--navy), transparent);
+  }
+  .kpi-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px var(--shadow-mid);
+  }
+  .kpi-card .kpi-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+  }
+  .kpi-card .kpi-val {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+  .kpi-card .kpi-sub {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+  }
+  .kpi-card.highlight {
+    border: 2px solid var(--gold);
+    background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(245,213,71,0.02));
+    box-shadow: 0 8px 24px rgba(212,175,55,0.12);
+  }
+  .kpi-card.highlight .kpi-val {
+    color: var(--amber);
+    background: linear-gradient(135deg, var(--amber), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* SECTION TITLE — Premium Gold Accent */
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--navy-dark);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    letter-spacing: -0.3px;
+  }
+  .section-title .icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    color: var(--gold-light);
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(26,31,77,0.15);
+  }
+
+  /* COLLEGE CARDS — Premium Design */
+  .college-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 2.5rem;
+  }
+  .college-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px var(--shadow-light);
+    position: relative;
+  }
+  .college-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--navy), var(--gold), var(--teal));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .college-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(26,31,77,0.12);
+  }
+  .college-card:hover::before {
+    opacity: 1;
+  }
+  .college-card .card-header {
+    padding: 1.4rem 1.4rem 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, rgba(245,245,247,0.5), transparent);
+  }
+  .rank-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(26,31,77,0.2);
+  }
+  .rank-badge.gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy-dark);
+    box-shadow: 0 4px 16px rgba(212,175,55,0.3);
+  }
+  .rank-badge.silver {
+    background: linear-gradient(135deg, #a8b5c7, #c0cad6);
+    color: #fff;
+  }
+  .rank-badge.bronze {
+    background: linear-gradient(135deg, #c17a54, #d9956a);
+    color: #fff;
+  }
+  .card-title {
+    flex: 1;
+  }
+  .card-title h3 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--navy-dark);
+    margin-bottom: 3px;
+    letter-spacing: -0.2px;
+  }
+  .card-title .location {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .admit-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.3px;
+  }
+  .admit-tag.dream { background: rgba(91,33,182,0.1); color: #5B21B6; }
+  .admit-tag.target { background: rgba(29,78,216,0.1); color: #1D4ED8; }
+  .admit-tag.safe { background: rgba(29,122,58,0.1); color: var(--green); }
+  .admit-tag.verysafe { background: rgba(197,112,30,0.1); color: var(--amber); }
+  .card-body {
+    padding: 1.2rem 1.4rem;
+  }
+  .metric-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .metric {
+    text-align: center;
+  }
+  .metric .val {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--navy);
+  }
+  .metric .lbl {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .score-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+  .score-bar .s-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    width: 100px;
+    flex-shrink: 0;
+  }
+  .score-bar .bar {
+    flex: 1;
+    height: 7px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .score-bar .fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--teal), #00b4d8);
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0.8rem;
+  }
+  .tag {
+    font-size: 10.5px;
+    padding: 4px 10px;
+    border-radius: 16px;
+    background: rgba(10,143,184,0.1);
+    color: var(--teal);
+    font-weight: 500;
+  }
+  .card-footer {
+    padding: 1rem 1.4rem;
+    border-top: 1px solid var(--border);
+    background: linear-gradient(135deg, rgba(245,245,247,0.5), transparent);
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .footer-badge {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1.5px solid;
+  }
+  .footer-badge.yes {
+    border-color: var(--green);
+    color: var(--green);
+    background: rgba(45,136,96,0.05);
+  }
+  .footer-badge.no {
+    border-color: var(--border);
+    color: var(--text-muted);
+    background: #fff;
+  }
+  .naac-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-left: auto;
+  }
+  .naac-badge.aplus { background: rgba(91,33,182,0.1); color: #5B21B6; }
+  .naac-badge.aplusplus { background: rgba(212,175,55,0.1); color: var(--amber); }
+  .naac-badge.a { background: rgba(10,143,184,0.1); color: var(--teal); }
+
+  /* COMPARISON TABLE — Premium styling */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 16px var(--shadow-light);
+    backdrop-filter: blur(10px);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    background: linear-gradient(90deg, var(--navy-dark), var(--navy), var(--navy-mid));
+    color: #fff;
+    padding: 1rem 1.2rem;
+    text-align: left;
+    white-space: nowrap;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  td {
+    padding: 0.9rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tr:nth-child(even) td {
+    background: rgba(245,245,247,0.6);
+  }
+  tr:hover td {
+    background: rgba(212,175,55,0.05);
+  }
+  .rank-num {
+    font-weight: 800;
+    color: var(--navy);
+  }
+  .package-val {
+    font-weight: 700;
+    color: var(--teal);
+  }
+  .pct-good {
+    color: var(--green);
+    font-weight: 700;
+  }
+  .pct-mid {
+    color: var(--amber);
+    font-weight: 700;
+  }
+  .pct-low {
+    color: var(--red);
+    font-weight: 700;
+  }
+  .score-chip {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .score-high {
+    background: rgba(45,136,96,0.12);
+    color: var(--green);
+  }
+  .score-mid {
+    background: rgba(197,112,30,0.12);
+    color: var(--amber);
+  }
+  .score-low {
+    background: rgba(196,30,58,0.12);
+    color: var(--red);
+  }
+  .tick {
+    color: var(--green);
+    font-weight: 800;
+  }
+  .cross {
+    color: var(--red);
+    font-weight: 800;
+  }
+
+  /* CHART SECTION */
+  .chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .chart-grid.full {
+    grid-template-columns: 1fr;
+  }
+  .chart-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.6rem;
+    box-shadow: 0 4px 16px var(--shadow-light);
+    transition: all 0.3s ease;
+  }
+  .chart-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 8px 24px var(--shadow-mid);
+  }
+  .chart-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--navy-dark);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--gold);
+    letter-spacing: -0.2px;
+  }
+  .chart-wrap {
+    position: relative;
+    width: 100%;;
+  }
+
+  /* SPECIAL LISTS */
+  .list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 2.5rem;
+  }
+  .list-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px var(--shadow-light);
+    transition: all 0.3s ease;
+  }
+  .list-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 8px 24px var(--shadow-mid);
+  }
+  .list-card-header {
+    padding: 1.2rem 1.4rem;
+    background: linear-gradient(135deg, var(--navy-dark), var(--navy), var(--navy-mid));
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    letter-spacing: 0.3px;
+  }
+  .list-card-header .ico {
+    font-size: 18px;
+  }
+  .list-item {
+    padding: 1rem 1.4rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.2s ease;
+  }
+  .list-item:last-child {
+    border-bottom: none;
+  }
+  .list-item:hover {
+    background: rgba(212,175,55,0.04);
+  }
+  .list-num {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .list-info {
+    flex: 1;
+  }
+  .list-info .name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy-dark);
+  }
+  .list-info .detail {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .list-val {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--teal);
+    text-align: right;
+  }
+
+  /* ADMISSION STRATEGY */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.8rem;
+    margin-bottom: 2.5rem;
+  }
+  .strategy-col {
+    background: var(--card);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 16px var(--shadow-light);
+    transition: all 0.3s ease;
+  }
+  .strategy-col:hover {
+    box-shadow: 0 8px 24px var(--shadow-mid);
+  }
+  .strategy-header {
+    padding: 1.2rem 1.4rem;
+    font-size: 14px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    letter-spacing: 0.3px;
+    color: #fff;
+  }
+  .dream-h { background: linear-gradient(135deg, #5B21B6, #7c3aed); }
+  .target-h { background: linear-gradient(135deg, #1D4ED8, #2563eb); }
+  .safe-h { background: linear-gradient(135deg, var(--green), #16a34a); }
+  .verysafe-h { background: linear-gradient(135deg, var(--amber), #e8860e); }
+  .strategy-body {
+    padding: 1.2rem 1.4rem;
+  }
+  .strategy-item {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .strategy-item:last-child {
+    border-bottom: none;
+  }
+  .s-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--navy-dark);
+  }
+  .s-rank-req {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+  .s-score {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--teal);
+    float: right;
+  }
+
+  /* TIPS */
+  .tip-box {
+    background: linear-gradient(135deg, var(--navy-dark), var(--navy), var(--navy-mid));
+    color: #fff;
+    border-radius: 16px;
+    padding: 2rem 1.8rem;
+    margin-bottom: 1.8rem;
+    border: 1px solid rgba(212,175,55,0.2);
+    box-shadow: 0 8px 24px rgba(26,31,77,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .tip-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background: radial-gradient(circle at 100% 50%, rgba(212,175,55,0.08), transparent);
+    pointer-events: none;
+  }
+  .tip-box h4 {
+    color: var(--gold-light);
+    font-size: 15px;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    position: relative;
+    z-index: 1;
+  }
+  .tip-box ul {
+    padding-left: 1.4rem;
+    position: relative;
+    z-index: 1;
+  }
+  .tip-box ul li {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 0.6rem;
+    line-height: 1.6;
+  }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    background: linear-gradient(135deg, rgba(197,112,30,0.05), rgba(245,213,71,0.05));
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.4rem;
+    font-size: 13px;
+    color: var(--amber);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  /* RED FLAGS */
+  .red-flag {
+    font-size: 11px;
+    color: #fff;
+    background: var(--red);
+    padding: 3px 8px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 3px 4px 3px 0;
+    font-weight: 600;
+  }
+
+  /* FOOTER */
+  .report-footer {
+    background: linear-gradient(135deg, var(--navy-dark), var(--navy), var(--navy-mid));
+    color: rgba(255,255,255,0.65);
+    text-align: center;
+    padding: 2.5rem 2rem;
+    font-size: 13px;
+    margin-top: 3rem;
+    border-top: 2px solid var(--gold);
+  }
+  .report-footer strong {
+    color: var(--gold-light);
+    font-weight: 800;
+  }
+
+  @media(max-width: 900px) {
+    .chart-grid { grid-template-columns: 1fr; }
+    .college-grid { grid-template-columns: 1fr; }
+    .strategy-grid { grid-template-columns: 1fr 1fr; }
+    .header-meta { gap: 1.5rem; }
+    .report-header h1 { font-size: 2rem; }
+    .report-header { padding: 3rem 1.5rem 2rem; }
+    .tab-btn { padding: 1rem 1rem; font-size: 13px; }
+  }
+
+  @media(max-width: 600px) {
+    .strategy-grid { grid-template-columns: 1fr; }
+    .college-grid { grid-template-columns: 1fr; }
+    .metric-row { grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+    .header-meta { flex-direction: column; gap: 0.8rem; }
+    .report-header h1 { font-size: 1.6rem; }
+    .section-title { font-size: 1.2rem; }
+    .tab-btn { padding: 0.8rem 0.7rem; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="report-header">
+  <div class="badge">Consulting Research Report 2025–26</div>
+  <h1>Best BTech CSE Colleges — Delhi NCR</h1>
+  <p class="subtitle">A data-driven guide for students with average JEE scores. Ranked by placements, ROI, and realistic admission prospects — not prestige.</p>
+  <div class="header-meta">
+    <span>📍 <strong>Geography:</strong> Delhi · Noida · Greater Noida · Ghaziabad · Gurugram</span>
+    <span>📊 <strong>Colleges Analysed:</strong> 15</span>
+    <span>🎯 <strong>Target Profile:</strong> JEE Rank 50,000–5,00,000</span>
+    <span>🗓 <strong>Data Year:</strong> 2024–25 (NIRF 2025 + Official Reports)</span>
+  </div>
+</div>
+
+<div class="tab-nav" id="tabNav">
+  <button class="tab-btn active" data-tab="rankings">🏆 Top Rankings</button>
+  <button class="tab-btn" data-tab="table">📋 Comparison Table</button>
+  <button class="tab-btn" data-tab="charts">📊 Charts & ROI</button>
+  <button class="tab-btn" data-tab="lists">🏅 Special Lists</button>
+  <button class="tab-btn" data-tab="strategy">🎓 Admission Strategy</button>
+</div>
+
+<!-- ===================== SECTION 1: RANKINGS ===================== -->
+<div id="sec-rankings" class="section active">
+<div class="container">
+
+  <div class="disclaimer">
+    ⚠️ <strong>Data Note:</strong> Placement figures are sourced from NIRF 2025 reports, official college placement cells, Careers360, Collegedunia, and Shiksha. Median packages in NIRF are calculated across all branches; CSE-specific packages are typically 20–40% higher. Management quota seat availability is indicative and subject to change by college authorities.
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card highlight">
+      <div class="kpi-label">Best ROI Pick</div>
+      <div class="kpi-val">GL Bajaj</div>
+      <div class="kpi-sub">₹4.21L total · 90% placement</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Highest CSE Package</div>
+      <div class="kpi-val">₹94 LPA</div>
+      <div class="kpi-sub">JIIT Noida (2025)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Best GGSIPU Private</div>
+      <div class="kpi-val">MAIT Delhi</div>
+      <div class="kpi-sub">₹64 LPA highest · Avg ₹8 LPA</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Highest Placement %</div>
+      <div class="kpi-val">BPIT 95%</div>
+      <div class="kpi-sub">853/895 placed (2024)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Easiest Admission</div>
+      <div class="kpi-val">Galgotias</div>
+      <div class="kpi-sub">Direct · No JEE cutoff</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">NAAC A++ in Delhi NCR</div>
+      <div class="kpi-val">VIPS Delhi</div>
+      <div class="kpi-sub">GGSIPU affiliated · Low fees</div>
+    </div>
+  </div>
+
+  <p class="section-title"><span class="icon">🏆</span> Weighted Rankings — All 15 Colleges</p>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:1.5rem;">Formula: 35% Median Package · 20% Placement % · 15% ROI · 10% Accessibility · 10% Internship · 5% Academic · 5% Infrastructure</p>
+
+  <div class="college-grid">
+
+    <!-- Card 1: JIIT -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge gold">1</div>
+        <div class="card-title">
+          <h3>JIIT Noida</h3>
+          <div class="location">📍 Noida Sector 62 &amp; 128 | Deemed University</div>
+        </div>
+        <span class="admit-tag dream">Dream</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹11.3L</div><div class="lbl">CSE Avg Pkg</div></div>
+          <div class="metric"><div class="val">85%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹14–16L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:83%;background:#5B21B6"></div></div><div style="font-size:12px;font-weight:700;color:#5B21B6">8.3/10</div></div>
+        <div class="score-bar"><div class="s-label">Median Pkg</div><div class="bar"><div class="fill" style="width:97%"></div></div></div>
+        <div class="score-bar"><div class="s-label">ROI</div><div class="bar"><div class="fill" style="width:54%"></div></div></div>
+        <div class="score-bar"><div class="s-label">Accessibility</div><div class="bar"><div class="fill" style="width:40%"></div></div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">Data Science</span><span class="tag">Cyber Security</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> Amazon · Adobe · Microsoft · Zomato · Deloitte<br>
+          <strong>NIRF:</strong> Top 100 Engineering | <strong>NAAC:</strong> A+ | <strong>Highest:</strong> ₹94 LPA<br>
+          <span class="red-flag">JEE 88–92+ percentile needed</span>
+          <span class="red-flag">High fees vs outcome ratio</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Direct (12th Merit)</span>
+        <span class="footer-badge no">✖ No Mgmt Quota</span>
+        <span class="naac-badge aplus">NAAC A+</span>
+      </div>
+    </div>
+
+    <!-- Card 2: BPIT -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge gold">2</div>
+        <div class="card-title">
+          <h3>BPIT Delhi</h3>
+          <div class="location">📍 Rohini, Delhi | GGSIPU Affiliated</div>
+        </div>
+        <span class="admit-tag target">Target</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹9 LPA</div><div class="lbl">CSE Avg Pkg</div></div>
+          <div class="metric"><div class="val">95%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹8L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:82%;background:#1D4ED8"></div></div><div style="font-size:12px;font-weight:700;color:#1D4ED8">8.2/10</div></div>
+        <div class="score-bar"><div class="s-label">Median Pkg</div><div class="bar"><div class="fill" style="width:81%"></div></div></div>
+        <div class="score-bar"><div class="s-label">ROI</div><div class="bar"><div class="fill" style="width:100%"></div></div></div>
+        <div class="score-bar"><div class="s-label">Accessibility</div><div class="bar"><div class="fill" style="width:60%"></div></div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">IT</span><span class="tag">ECE</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> Amazon · HCL · TCS · Cognizant · Wipro<br>
+          <strong>NIRF:</strong> Listed | <strong>NAAC:</strong> A | <strong>Highest:</strong> ₹66 LPA (2022)<br>
+          <strong>JEE Cutoff (Delhi):</strong> ~1,42,000 | <strong>Govt-regulated fee</strong><br>
+          <span class="red-flag">Mass IT service recruiters dominate</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Direct (Mgmt Quota)</span>
+        <span class="footer-badge yes">✔ NBA Accredited</span>
+        <span class="naac-badge a">NAAC A</span>
+      </div>
+    </div>
+
+    <!-- Card 3: MAIT -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge silver">3</div>
+        <div class="card-title">
+          <h3>MAIT Delhi</h3>
+          <div class="location">📍 Rohini, Delhi | GGSIPU Affiliated</div>
+        </div>
+        <span class="admit-tag target">Target</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹8 LPA</div><div class="lbl">CSE Avg Pkg</div></div>
+          <div class="metric"><div class="val">70%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹7.4L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:76%;background:#1D4ED8"></div></div><div style="font-size:12px;font-weight:700;color:#1D4ED8">7.6/10</div></div>
+        <div class="score-bar"><div class="s-label">Median Pkg</div><div class="bar"><div class="fill" style="width:78%"></div></div></div>
+        <div class="score-bar"><div class="s-label">ROI</div><div class="bar"><div class="fill" style="width:95%"></div></div></div>
+        <div class="score-bar"><div class="s-label">Accessibility</div><div class="bar"><div class="fill" style="width:50%"></div></div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">IT</span><span class="tag">ECE</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> Adobe · Amazon · De Shaw · ZS Associates · Microsoft<br>
+          <strong>NIRF:</strong> 201–300 Engg | <strong>NAAC:</strong> A | <strong>Highest:</strong> ₹64 LPA<br>
+          <strong>JEE Cutoff (Delhi):</strong> ~85,000 | India Today Rank: 39<br>
+          <span class="red-flag">Placement % dips in some years (63–87%)</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Mgmt Quota Available</span>
+        <span class="footer-badge yes">✔ NBA Accredited</span>
+        <span class="naac-badge a">NAAC A</span>
+      </div>
+    </div>
+
+    <!-- Card 4: GL Bajaj -->
+    <div class="college-card" style="border-color:var(--gold);box-shadow:0 0 0 2px #FEF3C7;">
+      <div class="card-header" style="background:#FFFBF0;">
+        <div class="rank-badge" style="background:var(--gold);color:var(--navy);">4</div>
+        <div class="card-title">
+          <h3>GL Bajaj, Greater Noida <span style="font-size:10px;background:var(--gold);color:var(--navy);padding:1px 6px;border-radius:10px;margin-left:4px;">Best ROI</span></h3>
+          <div class="location">📍 Greater Noida | AKTU Affiliated</div>
+        </div>
+        <span class="admit-tag safe">Safe</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹7.4L</div><div class="lbl">CSE Avg Pkg</div></div>
+          <div class="metric"><div class="val">90%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹4.2L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:79%;background:#B45309"></div></div><div style="font-size:12px;font-weight:700;color:#B45309">7.9/10</div></div>
+        <div class="score-bar"><div class="s-label">Median Pkg</div><div class="bar"><div class="fill" style="width:72%"></div></div></div>
+        <div class="score-bar"><div class="s-label">ROI</div><div class="bar"><div class="fill" style="width:100%;background:var(--gold)"></div></div></div>
+        <div class="score-bar"><div class="s-label">Accessibility</div><div class="bar"><div class="fill" style="width:80%"></div></div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">Data Science</span><span class="tag">IT</span><span class="tag">ECE</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> HCL · Capgemini · Wipro · Paytm · Cognizant · TCS<br>
+          <strong>NIRF:</strong> 201–250 Engg | <strong>NAAC:</strong> A+ | <strong>Highest:</strong> ₹58 LPA (2024)<br>
+          <strong>JEE Cutoff:</strong> Up to 2,26,000 (CSE AI&amp;ML) — very accessible<br>
+          <span class="red-flag">NIRF overall median 4.5L (all branches); CSE specific is higher</span>
+          <span class="red-flag">Location: Greater Noida, farther from Delhi</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Mgmt Quota Available</span>
+        <span class="footer-badge yes">✔ NBA Accredited</span>
+        <span class="naac-badge aplus">NAAC A+</span>
+      </div>
+    </div>
+
+    <!-- Card 5: Sharda -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge silver">5</div>
+        <div class="card-title">
+          <h3>Sharda University</h3>
+          <div class="location">📍 Greater Noida | UGC State Private</div>
+        </div>
+        <span class="admit-tag verysafe">Very Safe</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹6–8L</div><div class="lbl">CSE Avg Pkg</div></div>
+          <div class="metric"><div class="val">91%</div><div class="lbl">BTech Placement</div></div>
+          <div class="metric"><div class="val">₹13.6L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:76%;background:#0A7EA4"></div></div><div style="font-size:12px;font-weight:700;color:#0A7EA4">7.6/10</div></div>
+        <div class="score-bar"><div class="s-label">Placement %</div><div class="bar"><div class="fill" style="width:91%"></div></div></div>
+        <div class="score-bar"><div class="s-label">ROI</div><div class="bar"><div class="fill" style="width:57%"></div></div></div>
+        <div class="score-bar"><div class="s-label">Accessibility</div><div class="bar"><div class="fill" style="width:90%"></div></div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">Data Science</span><span class="tag">Cyber Security</span><span class="tag">Cloud</span><span class="tag">Full Stack</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> Amazon · JP Morgan · MU Sigma · Cognizant · Deloitte<br>
+          <strong>NIRF:</strong> 87 (University) · 101–150 (Engg) | <strong>Highest:</strong> ₹1.6 Cr (2025)<br>
+          <strong>Admission:</strong> SUAT / JEE / Direct — no high cutoff required<br>
+          <span class="red-flag">Higher fees (₹13.6L) vs comparable outcomes</span>
+          <span class="red-flag">International student diversity inflates some stats</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Direct SUAT / Own Exam</span>
+        <span class="footer-badge yes">✔ NBA Accredited</span>
+        <span class="naac-badge aplus">NAAC A+</span>
+      </div>
+    </div>
+
+    <!-- Card 6: Amity -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge silver">6</div>
+        <div class="card-title">
+          <h3>Amity University Noida</h3>
+          <div class="location">📍 Noida | UGC Deemed</div>
+        </div>
+        <span class="admit-tag target">Target</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹7–9L</div><div class="lbl">CSE Avg Pkg</div></div>
+          <div class="metric"><div class="val">80%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹16L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:75%;background:#1D4ED8"></div></div><div style="font-size:12px;font-weight:700;color:#1D4ED8">7.5/10</div></div>
+        <div class="score-bar"><div class="s-label">Median Pkg</div><div class="bar"><div class="fill" style="width:78%"></div></div></div>
+        <div class="score-bar"><div class="s-label">ROI</div><div class="bar"><div class="fill" style="width:52%"></div></div></div>
+        <div class="score-bar"><div class="s-label">Accessibility</div><div class="bar"><div class="fill" style="width:70%"></div></div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">Data Science</span><span class="tag">Cyber Security</span><span class="tag">Cloud</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> Microsoft · Amazon · Deloitte · TCS · Infosys<br>
+          <strong>NIRF:</strong> #30 Engineering | <strong>NAAC:</strong> A+ | <strong>Own entrance:</strong> AMITY JEE<br>
+          <strong>Direct Admission:</strong> Yes (via Amity JEE / 12th marks)<br>
+          <span class="red-flag">Very high fees (₹16L+) — worst ROI in this list</span>
+          <span class="red-flag">Average package not proportionate to fee invested</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Amity JEE (Own Exam)</span>
+        <span class="footer-badge yes">✔ NBA Accredited</span>
+        <span class="naac-badge aplus">NAAC A+</span>
+      </div>
+    </div>
+
+    <!-- Card 7: AKGEC -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge bronze">7</div>
+        <div class="card-title">
+          <h3>AKGEC Ghaziabad</h3>
+          <div class="location">📍 Ghaziabad, NCR | AKTU Affiliated</div>
+        </div>
+        <span class="admit-tag safe">Safe</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹5.5L</div><div class="lbl">Median Pkg</div></div>
+          <div class="metric"><div class="val">90%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹6.2L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:73%;background:#1D7A3A"></div></div><div style="font-size:12px;font-weight:700;color:#1D7A3A">7.3/10</div></div>
+        <div class="score-bar"><div class="s-label">Placement %</div><div class="bar"><div class="fill" style="width:90%"></div></div></div>
+        <div class="score-bar"><div class="s-label">ROI</div><div class="bar"><div class="fill" style="width:100%"></div></div></div>
+        <div class="score-bar"><div class="s-label">Accessibility</div><div class="bar"><div class="fill" style="width:60%"></div></div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">IT</span><span class="tag">Data Science</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> TCS · Infosys · Wipro · HCL · Cognizant<br>
+          <strong>NAAC:</strong> A+ | <strong>NBA Accredited</strong> | <strong>NIRF Median:</strong> ₹5.5 LPA (2024)<br>
+          <strong>Management Quota:</strong> Available without JEE cutoff (65% PCM needed)<br>
+          <span class="red-flag">Mass IT services dominate</span>
+          <span class="red-flag">Located in Ghaziabad, not Delhi</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Mgmt Quota (No JEE)</span>
+        <span class="footer-badge yes">✔ NBA Accredited</span>
+        <span class="naac-badge aplus">NAAC A+</span>
+      </div>
+    </div>
+
+    <!-- Card 8: MSIT -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge bronze">8</div>
+        <div class="card-title">
+          <h3>MSIT Delhi</h3>
+          <div class="location">📍 Janakpuri, Delhi | GGSIPU Affiliated</div>
+        </div>
+        <span class="admit-tag target">Target</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹6.5L</div><div class="lbl">CSE Avg Pkg</div></div>
+          <div class="metric"><div class="val">75%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹7.4L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:73%;background:#1D4ED8"></div></div><div style="font-size:12px;font-weight:700;color:#1D4ED8">7.3/10</div></div>
+        <div class="score-bar"><div class="s-label">Median Pkg</div><div class="bar"><div class="fill" style="width:72%"></div></div></div>
+        <div class="score-bar"><div class="s-label">ROI</div><div class="bar"><div class="fill" style="width:100%"></div></div></div>
+        <div class="score-bar"><div class="s-label">Accessibility</div><div class="bar"><div class="fill" style="width:50%"></div></div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">IT</span><span class="tag">ECE</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> TCS · Infosys · Wipro · Accenture · HCL<br>
+          <strong>NAAC:</strong> A | <strong>NBA Accredited</strong><br>
+          <strong>JEE Cutoff (Delhi):</strong> ~90,000–1,05,000<br>
+          <span class="red-flag">Less diverse recruiter base vs MAIT</span>
+          <span class="red-flag">Slightly lower brand recognition</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Mgmt Quota Available</span>
+        <span class="footer-badge yes">✔ NBA Accredited</span>
+        <span class="naac-badge a">NAAC A</span>
+      </div>
+    </div>
+
+    <!-- Card 9: KIET -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge bronze">9</div>
+        <div class="card-title">
+          <h3>KIET Ghaziabad</h3>
+          <div class="location">📍 Ghaziabad, NCR | AKTU / Deemed</div>
+        </div>
+        <span class="admit-tag target">Target</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹5.4L</div><div class="lbl">Avg Pkg</div></div>
+          <div class="metric"><div class="val">77%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹7L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:71%;background:#0A7EA4"></div></div><div style="font-size:12px;font-weight:700;color:#0A7EA4">7.1/10</div></div>
+        <div class="score-bar"><div class="s-label">Median Pkg</div><div class="bar"><div class="fill" style="width:61%"></div></div></div>
+        <div class="score-bar"><div class="s-label">ROI</div><div class="bar"><div class="fill" style="width:94%"></div></div></div>
+        <div class="score-bar"><div class="s-label">Accessibility</div><div class="bar"><div class="fill" style="width:60%"></div></div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">Data Science</span><span class="tag">IT</span><span class="tag">ECE</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> Deloitte · Microsoft · Accenture · Samsung · TCS<br>
+          <strong>NIRF:</strong> 151–200 Engg | <strong>NAAC:</strong> A+ | <strong>Highest:</strong> ₹60 LPA<br>
+          <strong>Total Offers 2024:</strong> 1,851 | <strong>Companies:</strong> 341 | <strong>Placed:</strong> 1,391<br>
+          <span class="red-flag">NIRF median 4.5L (all branches)</span>
+          <span class="red-flag">NASA Rover Challenge winner — niche research strength</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ 15% Direct Quota</span>
+        <span class="footer-badge yes">✔ NBA Accredited</span>
+        <span class="naac-badge aplus">NAAC A+</span>
+      </div>
+    </div>
+
+    <!-- Card 10: BVCOE -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge" style="background:#64748B">10</div>
+        <div class="card-title">
+          <h3>BVCOE Delhi</h3>
+          <div class="location">📍 Paschim Vihar, Delhi | GGSIPU</div>
+        </div>
+        <span class="admit-tag target">Target</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹6L</div><div class="lbl">CSE Avg Pkg</div></div>
+          <div class="metric"><div class="val">70%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹7.2L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:71%"></div></div><div style="font-size:12px;font-weight:700;color:var(--teal)">7.1/10</div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">IT</span><span class="tag">ECE</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> TCS · Wipro · HCL · Infosys · Capgemini<br>
+          <strong>NAAC:</strong> A | <strong>NBA Accredited</strong> | Delhi location advantage<br>
+          <strong>JEE Cutoff (Delhi):</strong> ~1,32,000–1,45,000 — accessible<br>
+          <span class="red-flag">Less brand recognition than MAIT/BPIT</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Mgmt Quota Available</span>
+        <span class="footer-badge yes">✔ NBA Accredited</span>
+        <span class="naac-badge a">NAAC A</span>
+      </div>
+    </div>
+
+    <!-- Card 11: NIET -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge" style="background:#64748B">11</div>
+        <div class="card-title">
+          <h3>NIET Greater Noida</h3>
+          <div class="location">📍 Greater Noida | AKTU Affiliated</div>
+        </div>
+        <span class="admit-tag safe">Safe</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹6L</div><div class="lbl">CSE Avg Pkg</div></div>
+          <div class="metric"><div class="val">70%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹10L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:68%"></div></div><div style="font-size:12px;font-weight:700;color:var(--teal)">6.8/10</div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">IT</span><span class="tag">ECE</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> Google · Amazon · Microsoft · Samsung · Capgemini<br>
+          <strong>NAAC:</strong> A | <strong>NBA Accredited</strong> | 3100+ offers, 500+ companies<br>
+          <span class="red-flag">NIRF median 4.56L (pharmacy-weighted)</span>
+          <span class="red-flag">Recruiter list includes company names not CSE-specific</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Direct Admission</span>
+        <span class="footer-badge yes">✔ NBA Accredited</span>
+        <span class="naac-badge a">NAAC A</span>
+      </div>
+    </div>
+
+    <!-- Card 12: JSSATE -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge" style="background:#64748B">12</div>
+        <div class="card-title">
+          <h3>JSSATE Noida</h3>
+          <div class="location">📍 Noida, Sector 62 | AKTU / Autonomous</div>
+        </div>
+        <span class="admit-tag safe">Safe</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹5.5L</div><div class="lbl">Avg Pkg</div></div>
+          <div class="metric"><div class="val">75%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹7L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:71%"></div></div><div style="font-size:12px;font-weight:700;color:var(--teal)">7.1/10</div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">IT</span><span class="tag">ECE</span><span class="tag">AI &amp; ML</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> TCS · Wipro · Infosys · Capgemini · HCL<br>
+          <strong>NAAC:</strong> A | <strong>NBA Accredited</strong> | JSS Mahavidyapeetha Group<br>
+          <span class="red-flag">Limited brand visibility outside NCR</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Mgmt Quota Available</span>
+        <span class="footer-badge yes">✔ NBA Accredited</span>
+        <span class="naac-badge a">NAAC A</span>
+      </div>
+    </div>
+
+    <!-- Card 13: Galgotias -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge" style="background:#64748B">13</div>
+        <div class="card-title">
+          <h3>Galgotias University</h3>
+          <div class="location">📍 Greater Noida | UGC State Private</div>
+        </div>
+        <span class="admit-tag verysafe">Very Safe</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹4.5–5L</div><div class="lbl">Avg Pkg</div></div>
+          <div class="metric"><div class="val">75%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹6.8L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:67%"></div></div><div style="font-size:12px;font-weight:700;color:var(--teal)">6.7/10</div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">Data Science</span><span class="tag">Cyber Security</span><span class="tag">Cloud</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> IBM · Tech Mahindra · Amazon · Wipro · TCS<br>
+          <strong>NIRF:</strong> 101–150 Engg | <strong>NAAC:</strong> A+ | Very large campus (52 acres)<br>
+          <strong>Admission:</strong> CUET / Own test / Direct — easiest admission in this list<br>
+          <span class="red-flag">Some negative reviews about management &amp; faculty quality</span>
+          <span class="red-flag">Mass IT recruiters; fewer premium company visits</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Direct / CUET</span>
+        <span class="footer-badge no">✖ No NBA (as of 2025)</span>
+        <span class="naac-badge aplus">NAAC A+</span>
+      </div>
+    </div>
+
+    <!-- Card 14: VIPS -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge" style="background:#64748B">14</div>
+        <div class="card-title">
+          <h3>VIPS Delhi</h3>
+          <div class="location">📍 Pitampura, Delhi | GGSIPU</div>
+        </div>
+        <span class="admit-tag safe">Safe</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹8–10L</div><div class="lbl">Reported Avg</div></div>
+          <div class="metric"><div class="val">60%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹7L</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:61%"></div></div><div style="font-size:12px;font-weight:700;color:var(--teal)">6.1/10</div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">IT</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>NAAC:</strong> A++ (highest grade) | <strong>Highest:</strong> ₹72 LPA<br>
+          <span class="red-flag">BTech is a relatively new program (2019 batch)</span>
+          <span class="red-flag">Placement data still maturing — treat with caution</span>
+          <span class="red-flag">Lower placement % as engineering ecosystem builds</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Mgmt Quota (same fee)</span>
+        <span class="footer-badge no">✖ NBA Pending</span>
+        <span class="naac-badge aplusplus">NAAC A++</span>
+      </div>
+    </div>
+
+    <!-- Card 15: Bennett -->
+    <div class="college-card">
+      <div class="card-header">
+        <div class="rank-badge" style="background:#64748B">15</div>
+        <div class="card-title">
+          <h3>Bennett University</h3>
+          <div class="location">📍 Greater Noida | UGC (TOI Group)</div>
+        </div>
+        <span class="admit-tag dream">Dream</span>
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <div class="metric"><div class="val">₹9–10L</div><div class="lbl">CSE Avg Pkg</div></div>
+          <div class="metric"><div class="val">85%</div><div class="lbl">Placement %</div></div>
+          <div class="metric"><div class="val">₹19L+</div><div class="lbl">4-yr Cost</div></div>
+        </div>
+        <div class="score-bar"><div class="s-label">Overall Score</div><div class="bar"><div class="fill" style="width:68%"></div></div><div style="font-size:12px;font-weight:700;color:var(--teal)">6.8/10</div></div>
+        <div class="tags">
+          <span class="tag">CSE Core</span><span class="tag">AI &amp; ML</span><span class="tag">Data Science</span><span class="tag">Cyber Security</span><span class="tag">Full Stack</span>
+        </div>
+        <div style="margin-top:.8rem;font-size:12px;color:var(--text-secondary);">
+          <strong>Top Recruiters:</strong> Salesforce · Amazon · TCS · HCL · Wipro<br>
+          <strong>NAAC:</strong> A+ | <strong>Highest:</strong> ₹1.8 Cr (2025) | Times Group<br>
+          <span class="red-flag">Very high fees (₹19L+) — WORST ROI in this list</span>
+          <span class="red-flag">Prestige doesn't yet match fee premium charged</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="footer-badge yes">✔ Direct (No JEE mandatory)</span>
+        <span class="footer-badge yes">✔ NBA Accredited</span>
+        <span class="naac-badge aplus">NAAC A+</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+<!-- ===================== SECTION 2: TABLE ===================== -->
+<div id="sec-table" class="section">
+<div class="container">
+  <p class="section-title"><span class="icon">📋</span> Master Comparison Table</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>College</th>
+          <th>Location</th>
+          <th>Type</th>
+          <th>NAAC</th>
+          <th>NIRF Band</th>
+          <th>4-yr Cost</th>
+          <th>CSE Avg Pkg</th>
+          <th>Highest Pkg</th>
+          <th>Placement %</th>
+          <th>JEE Cutoff</th>
+          <th>Direct Adm.</th>
+          <th>Mgmt Quota</th>
+          <th>ROI Score</th>
+          <th>Overall</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="rank-num">1</td><td><strong>JIIT Noida</strong></td><td>Noida</td><td>Deemed</td><td>A+</td><td>Top 100</td><td>₹14–16L</td><td class="package-val">₹11.3L</td><td>₹94L</td><td class="pct-good">85%</td><td>~85,000</td><td class="tick">✔</td><td class="cross">✖</td><td><span class="score-chip score-mid">5.4</span></td><td><span class="score-chip score-high">8.3</span></td></tr>
+        <tr><td class="rank-num">2</td><td><strong>BPIT Delhi</strong></td><td>Rohini, Delhi</td><td>GGSIPU</td><td>A</td><td>Listed</td><td>₹8L</td><td class="package-val">₹9L</td><td>₹66L</td><td class="pct-good">95%</td><td>~1,42,000</td><td class="tick">✔</td><td class="tick">✔</td><td><span class="score-chip score-high">10</span></td><td><span class="score-chip score-high">8.2</span></td></tr>
+        <tr><td class="rank-num">3</td><td><strong>MAIT Delhi</strong></td><td>Rohini, Delhi</td><td>GGSIPU</td><td>A</td><td>201–300</td><td>₹7.4L</td><td class="package-val">₹8L</td><td>₹64L</td><td class="pct-mid">70%</td><td>~85,000</td><td class="tick">✔</td><td class="tick">✔</td><td><span class="score-chip score-high">9.5</span></td><td><span class="score-chip score-high">7.6</span></td></tr>
+        <tr><td class="rank-num">4</td><td><strong>GL Bajaj</strong> ⭐</td><td>Gr. Noida</td><td>AKTU</td><td>A+</td><td>201–250</td><td>₹4.2L</td><td class="package-val">₹7.4L</td><td>₹58L</td><td class="pct-good">90%</td><td>&gt;1,70,000</td><td class="tick">✔</td><td class="tick">✔</td><td><span class="score-chip score-high">10</span></td><td><span class="score-chip score-high">7.9</span></td></tr>
+        <tr><td class="rank-num">5</td><td><strong>Sharda Univ.</strong></td><td>Gr. Noida</td><td>Private Univ</td><td>A+</td><td>101–150</td><td>₹13.6L</td><td class="package-val">₹6–8L</td><td>₹1.6Cr</td><td class="pct-good">91%</td><td>None</td><td class="tick">✔</td><td class="cross">✖</td><td><span class="score-chip score-mid">5.7</span></td><td><span class="score-chip score-high">7.6</span></td></tr>
+        <tr><td class="rank-num">6</td><td><strong>Amity Noida</strong></td><td>Noida</td><td>Deemed</td><td>A+</td><td>#30 Engg</td><td>₹16L</td><td class="package-val">₹7–9L</td><td>₹55L</td><td class="pct-mid">80%</td><td>None (own)</td><td class="tick">✔</td><td class="cross">✖</td><td><span class="score-chip score-mid">5.3</span></td><td><span class="score-chip score-high">7.5</span></td></tr>
+        <tr><td class="rank-num">7</td><td><strong>AKGEC Gzb</strong></td><td>Ghaziabad</td><td>AKTU</td><td>A+</td><td>—</td><td>₹6.2L</td><td class="package-val">₹5.5L</td><td>₹35L</td><td class="pct-good">90%</td><td>&gt;2,00,000</td><td class="tick">✔</td><td class="tick">✔</td><td><span class="score-chip score-high">10</span></td><td><span class="score-chip score-high">7.3</span></td></tr>
+        <tr><td class="rank-num">8</td><td><strong>MSIT Delhi</strong></td><td>Janakpuri, Delhi</td><td>GGSIPU</td><td>A</td><td>—</td><td>₹7.4L</td><td class="package-val">₹6.5L</td><td>₹45L</td><td class="pct-mid">75%</td><td>~90,000</td><td class="tick">✔</td><td class="tick">✔</td><td><span class="score-chip score-high">10</span></td><td><span class="score-chip score-high">7.3</span></td></tr>
+        <tr><td class="rank-num">9</td><td><strong>KIET Gzb</strong></td><td>Ghaziabad</td><td>AKTU/Deemed</td><td>A+</td><td>151–200</td><td>₹7L</td><td class="package-val">₹5.4L</td><td>₹60L</td><td class="pct-mid">77%</td><td>&gt;1,15,000</td><td class="tick">✔</td><td class="tick">✔</td><td><span class="score-chip score-high">9.4</span></td><td><span class="score-chip score-high">7.1</span></td></tr>
+        <tr><td class="rank-num">10</td><td><strong>BVCOE Delhi</strong></td><td>Paschim Vihar, Delhi</td><td>GGSIPU</td><td>A</td><td>—</td><td>₹7.2L</td><td class="package-val">₹6L</td><td>₹40L</td><td class="pct-mid">70%</td><td>~1,32,000</td><td class="tick">✔</td><td class="tick">✔</td><td><span class="score-chip score-high">10</span></td><td><span class="score-chip score-high">7.1</span></td></tr>
+        <tr><td class="rank-num">11</td><td><strong>NIET Gr. Noida</strong></td><td>Gr. Noida</td><td>AKTU</td><td>A</td><td>Listed</td><td>₹10L</td><td class="package-val">₹6L</td><td>₹44L</td><td class="pct-mid">70%</td><td>Open</td><td class="tick">✔</td><td class="tick">✔</td><td><span class="score-chip score-mid">7.2</span></td><td><span class="score-chip score-mid">6.8</span></td></tr>
+        <tr><td class="rank-num">12</td><td><strong>JSSATE Noida</strong></td><td>Noida</td><td>AKTU/Aut.</td><td>A</td><td>—</td><td>₹7L</td><td class="package-val">₹5.5L</td><td>₹35L</td><td class="pct-mid">75%</td><td>Open</td><td class="tick">✔</td><td class="tick">✔</td><td><span class="score-chip score-high">9.4</span></td><td><span class="score-chip score-mid">7.1</span></td></tr>
+        <tr><td class="rank-num">13</td><td><strong>Galgotias Univ.</strong></td><td>Gr. Noida</td><td>Private Univ</td><td>A+</td><td>101–150</td><td>₹6.8L</td><td class="package-val">₹4.5–5L</td><td>₹1.5Cr</td><td class="pct-mid">75%</td><td>None</td><td class="tick">✔</td><td class="cross">✖</td><td><span class="score-chip score-mid">8.8</span></td><td><span class="score-chip score-mid">6.7</span></td></tr>
+        <tr><td class="rank-num">14</td><td><strong>VIPS Delhi</strong></td><td>Pitampura, Delhi</td><td>GGSIPU</td><td>A++</td><td>—</td><td>₹7L</td><td class="package-val">₹8–10L*</td><td>₹72L</td><td class="pct-low">60%</td><td>~1,50,000</td><td class="tick">✔</td><td class="tick">✔</td><td><span class="score-chip score-mid">8.6</span></td><td><span class="score-chip score-mid">6.1</span></td></tr>
+        <tr><td class="rank-num">15</td><td><strong>Bennett Univ.</strong></td><td>Gr. Noida</td><td>Private Univ</td><td>A+</td><td>Top band</td><td>₹19L+</td><td class="package-val">₹9–10L</td><td>₹1.8Cr</td><td class="pct-good">85%</td><td>None</td><td class="tick">✔</td><td class="cross">✖</td><td><span class="score-chip score-low">3.6</span></td><td><span class="score-chip score-mid">6.8</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:12px;color:var(--text-muted);">* VIPS BTech is a newer program; placement data is still maturing. Treat average package claim with caution. ⭐ = Best ROI Pick</p>
+</div>
+</div>
+
+<!-- ===================== SECTION 3: CHARTS ===================== -->
+<div id="sec-charts" class="section">
+<div class="container">
+  <p class="section-title"><span class="icon">📊</span> Data Visualisations</p>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-title">Average CSE Package (LPA)</div>
+      <div class="chart-wrap" style="height:340px;">
+        <canvas id="pkgChart" role="img" aria-label="Bar chart of average CSE package by college. JIIT tops at 11.3 LPA.">Average CSE packages range from 4.5 LPA at Galgotias to 11.3 LPA at JIIT.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Placement Percentage by College</div>
+      <div class="chart-wrap" style="height:340px;">
+        <canvas id="pctChart" role="img" aria-label="Horizontal bar chart of placement percentages. BPIT leads at 95%, VIPS lowest at 60%.">Placement rates range from 60% (VIPS) to 95% (BPIT).</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-title">Fee vs CSE Average Package — Scatter (4-yr total cost in Lakhs)</div>
+      <div class="chart-wrap" style="height:340px;">
+        <canvas id="scatterChart" role="img" aria-label="Scatter plot comparing 4-year total cost against average CSE package. GL Bajaj shows best value in bottom-right area.">Scatter of fee vs package. GL Bajaj and MAIT offer the best value.</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">ROI Index — (CSE Avg Pkg × 4) ÷ Total Fee</div>
+      <div class="chart-wrap" style="height:340px;">
+        <canvas id="roiChart" role="img" aria-label="Bar chart of ROI index. GL Bajaj leads with 7.0, followed by AKGEC and BPIT.">ROI index: GL Bajaj 7.0, AKGEC 3.5, BPIT 4.5. Bennett worst at 1.9.</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card" style="margin-bottom:1.5rem;">
+    <div class="chart-title">Admission Difficulty vs Overall Score — Bubble Chart (bubble size = 4-yr cost)</div>
+    <div class="chart-wrap" style="height:380px;">
+      <canvas id="bubbleChart" role="img" aria-label="Bubble chart with difficulty on X axis, score on Y axis, bubble size representing cost. GL Bajaj is in the ideal lower-left, high-score zone.">GL Bajaj and BPIT appear in the best zone: high score, low difficulty, low cost.</canvas>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ===================== SECTION 4: SPECIAL LISTS ===================== -->
+<div id="sec-lists" class="section">
+<div class="container">
+  <p class="section-title"><span class="icon">🏅</span> Category Rankings</p>
+
+  <div class="list-grid">
+    <div class="list-card">
+      <div class="list-card-header">💰 Top 5 — Best ROI Colleges</div>
+      <div class="list-item"><div class="list-num">1</div><div class="list-info"><div class="name">GL Bajaj, Greater Noida</div><div class="detail">₹4.2L fees · ₹7.4L avg pkg · ROI: 7.0×</div></div><div class="list-val">7.0×</div></div>
+      <div class="list-item"><div class="list-num">2</div><div class="list-info"><div class="name">AKGEC Ghaziabad</div><div class="detail">₹6.2L fees · ₹5.5L avg pkg · ROI: 3.5×</div></div><div class="list-val">3.5×</div></div>
+      <div class="list-item"><div class="list-num">3</div><div class="list-info"><div class="name">BPIT Delhi</div><div class="detail">₹8L fees · ₹9L avg pkg · ROI: 4.5×</div></div><div class="list-val">4.5×</div></div>
+      <div class="list-item"><div class="list-num">4</div><div class="list-info"><div class="name">MAIT Delhi</div><div class="detail">₹7.4L fees · ₹8L avg pkg · ROI: 4.3×</div></div><div class="list-val">4.3×</div></div>
+      <div class="list-item"><div class="list-num">5</div><div class="list-info"><div class="name">MSIT Delhi / BVCOE Delhi</div><div class="detail">₹7.4L fees · ₹6.5L avg · Reg. fees</div></div><div class="list-val">3.5×</div></div>
+    </div>
+
+    <div class="list-card">
+      <div class="list-card-header">🎯 Top 5 — Best Placement Colleges</div>
+      <div class="list-item"><div class="list-num">1</div><div class="list-info"><div class="name">BPIT Delhi</div><div class="detail">95% placement rate · 853/895 placed</div></div><div class="list-val">95%</div></div>
+      <div class="list-item"><div class="list-num">2</div><div class="list-info"><div class="name">Sharda University</div><div class="detail">91% BTech placement (2025) · 600+ cos</div></div><div class="list-val">91%</div></div>
+      <div class="list-item"><div class="list-num">3</div><div class="list-info"><div class="name">GL Bajaj / AKGEC</div><div class="detail">90% each · 500+ companies visited</div></div><div class="list-val">90%</div></div>
+      <div class="list-item"><div class="list-num">4</div><div class="list-info"><div class="name">JIIT Noida / Bennett</div><div class="detail">85% each · Premium companies</div></div><div class="list-val">85%</div></div>
+      <div class="list-item"><div class="list-num">5</div><div class="list-info"><div class="name">Amity Noida</div><div class="detail">80% · NIRF #30 Engg · Own test</div></div><div class="list-val">80%</div></div>
+    </div>
+
+    <div class="list-card">
+      <div class="list-card-header">🚪 Top 5 — Easiest Admission + Good Placements</div>
+      <div class="list-item"><div class="list-num">1</div><div class="list-info"><div class="name">Galgotias University</div><div class="detail">Direct / CUET · No JEE cutoff required</div></div><div class="list-val">75%</div></div>
+      <div class="list-item"><div class="list-num">2</div><div class="list-info"><div class="name">Sharda University</div><div class="detail">SUAT / JEE (any score) · Own exam</div></div><div class="list-val">91%</div></div>
+      <div class="list-item"><div class="list-num">3</div><div class="list-info"><div class="name">GL Bajaj, Greater Noida</div><div class="detail">JEE &gt;1.7L rank OK · Mgmt quota</div></div><div class="list-val">90%</div></div>
+      <div class="list-item"><div class="list-num">4</div><div class="list-info"><div class="name">AKGEC Ghaziabad</div><div class="detail">Mgmt quota without JEE · 65% PCM</div></div><div class="list-val">90%</div></div>
+      <div class="list-item"><div class="list-num">5</div><div class="list-info"><div class="name">Amity University Noida</div><div class="detail">Own Amity JEE / 12th marks</div></div><div class="list-val">80%</div></div>
+    </div>
+
+    <div class="list-card">
+      <div class="list-card-header">💳 Top 5 — Direct Admission Colleges</div>
+      <div class="list-item"><div class="list-num">1</div><div class="list-info"><div class="name">MAIT Delhi (GGSIPU)</div><div class="detail">Management quota · Same govt-regulated fee</div></div><div class="list-val">₹7.4L</div></div>
+      <div class="list-item"><div class="list-num">2</div><div class="list-info"><div class="name">BPIT Delhi (GGSIPU)</div><div class="detail">Management quota · NAAC A · NBA acc.</div></div><div class="list-val">₹8L</div></div>
+      <div class="list-item"><div class="list-num">3</div><div class="list-info"><div class="name">VIPS Delhi (GGSIPU)</div><div class="detail">Court ruling: same fee as regular seats</div></div><div class="list-val">₹7L</div></div>
+      <div class="list-item"><div class="list-num">4</div><div class="list-info"><div class="name">GL Bajaj, Greater Noida</div><div class="detail">Mgmt quota · 15% seats available</div></div><div class="list-val">₹4.2L</div></div>
+      <div class="list-item"><div class="list-num">5</div><div class="list-info"><div class="name">KIET Ghaziabad</div><div class="detail">15% direct quota · NAAC A+ · NBA</div></div><div class="list-val">₹7L</div></div>
+    </div>
+
+    <div class="list-card">
+      <div class="list-card-header">📉 Top 5 — Budget-Friendly (Low Fee + Decent Placement)</div>
+      <div class="list-item"><div class="list-num">1</div><div class="list-info"><div class="name">GL Bajaj, Greater Noida</div><div class="detail">₹1.05L/yr tuition · NAAC A+ · 90% placed</div></div><div class="list-val">₹4.2L</div></div>
+      <div class="list-item"><div class="list-num">2</div><div class="list-info"><div class="name">MAIT Delhi (GGSIPU)</div><div class="detail">₹1.86L/yr · Govt-regulated · NBA acc.</div></div><div class="list-val">₹7.4L</div></div>
+      <div class="list-item"><div class="list-num">3</div><div class="list-info"><div class="name">AKGEC Ghaziabad</div><div class="detail">₹1.55L/yr · NAAC A+ · 90% placement</div></div><div class="list-val">₹6.2L</div></div>
+      <div class="list-item"><div class="list-num">4</div><div class="list-info"><div class="name">Galgotias University</div><div class="detail">₹1.59L/yr · Direct admission easy</div></div><div class="list-val">₹6.8L</div></div>
+      <div class="list-item"><div class="list-num">5</div><div class="list-info"><div class="name">BVCOE Delhi (GGSIPU)</div><div class="detail">₹1.8L/yr · Govt-regulated · Delhi location</div></div><div class="list-val">₹7.2L</div></div>
+    </div>
+
+    <div class="list-card">
+      <div class="list-card-header">⭐ Top 5 — Overall Recommendations (Average JEE Profile)</div>
+      <div class="list-item"><div class="list-num">1</div><div class="list-info"><div class="name">GL Bajaj, Greater Noida</div><div class="detail">Best ROI · 90% placement · NAAC A+ · ₹4.2L</div></div><div class="list-val">★★★★★</div></div>
+      <div class="list-item"><div class="list-num">2</div><div class="list-info"><div class="name">BPIT Delhi</div><div class="detail">95% placement · Delhi · Low fee · NBA acc.</div></div><div class="list-val">★★★★★</div></div>
+      <div class="list-item"><div class="list-num">3</div><div class="list-info"><div class="name">MAIT Delhi</div><div class="detail">Top GGSIPU private · Adobe/Amazon recruiter</div></div><div class="list-val">★★★★☆</div></div>
+      <div class="list-item"><div class="list-num">4</div><div class="list-info"><div class="name">AKGEC Ghaziabad</div><div class="detail">90% placement · No JEE req. · NAAC A+</div></div><div class="list-val">★★★★☆</div></div>
+      <div class="list-item"><div class="list-num">5</div><div class="list-info"><div class="name">KIET Ghaziabad</div><div class="detail">NIRF 151-200 · NBA · Deloitte/Microsoft</div></div><div class="list-val">★★★★☆</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===================== SECTION 5: STRATEGY ===================== -->
+<div id="sec-strategy" class="section">
+<div class="container">
+  <p class="section-title"><span class="icon">🎓</span> Admission Strategy</p>
+
+  <div class="tip-box" style="margin-bottom:2rem;">
+    <h4>For a Student with JEE Rank ~50,000–5,00,000 (Average Profile)</h4>
+    <ul>
+      <li>A JEE rank of 50K–1L qualifies for MAIT (Delhi quota) and may borderline JIIT via 12th board merit. Prioritise IPU counselling rounds 2 &amp; 3.</li>
+      <li>A JEE rank of 1L–2L qualifies for BPIT, BVCOE, MSIT in Delhi; and GL Bajaj, KIET, AKGEC in NCR via UPTAC.</li>
+      <li>A JEE rank of 2L–5L+ should focus on GL Bajaj (via UPTAC), AKGEC (management quota), Sharda or Galgotias (direct).</li>
+      <li>Without a strong JEE score: GL Bajaj management quota (65% PCM), AKGEC management quota, Sharda SUAT, or Galgotias CUET are realistic paths with good outcomes.</li>
+      <li>Always apply for GGSIPU IPU CET if you have 12th PCM ≥55% — the IPU CET-based route can get you into BPIT or BVCOE even with a weak JEE score.</li>
+      <li>Avoid Bennett and Amity unless you can comfortably afford ₹16–20L — the ROI does not justify the premium over GL Bajaj or MAIT.</li>
+    </ul>
+  </div>
+
+  <div class="strategy-grid">
+    <div class="strategy-col">
+      <div class="strategy-header dream-h">🌟 Dream Colleges</div>
+      <div class="strategy-body">
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:.8rem;">JEE Rank ≤ 85,000 (Delhi) or ≤ 50,000 (OS) required</div>
+        <div class="strategy-item">
+          <div class="s-name">JIIT Noida<span class="s-score">8.3/10</span></div>
+          <div class="s-rank-req">JEE 88+ percentile · ₹14–16L · Best CSE curriculum</div>
+        </div>
+        <div class="strategy-item">
+          <div class="s-name">Bennett University<span class="s-score">6.8/10</span></div>
+          <div class="s-rank-req">No JEE needed · But ₹19L+ fee · Poor ROI</div>
+        </div>
+        <div class="strategy-item">
+          <div class="s-name">MAIT Delhi (Shift 1)<span class="s-score">7.6/10</span></div>
+          <div class="s-rank-req">JEE ~70,000–85,000 (Delhi quota)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strategy-col">
+      <div class="strategy-header target-h">🎯 Target Colleges</div>
+      <div class="strategy-body">
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:.8rem;">JEE Rank 85,000–1,60,000 (Delhi) — realistically achievable</div>
+        <div class="strategy-item">
+          <div class="s-name">BPIT Delhi<span class="s-score">8.2/10</span></div>
+          <div class="s-rank-req">JEE ~1,40,000 · 95% placement · Best value</div>
+        </div>
+        <div class="strategy-item">
+          <div class="s-name">MSIT Delhi<span class="s-score">7.3/10</span></div>
+          <div class="s-rank-req">JEE ~90,000 · Good Delhi location</div>
+        </div>
+        <div class="strategy-item">
+          <div class="s-name">BVCOE Delhi<span class="s-score">7.1/10</span></div>
+          <div class="s-rank-req">JEE ~1,32,000 · Affordable · Delhi</div>
+        </div>
+        <div class="strategy-item">
+          <div class="s-name">KIET Ghaziabad<span class="s-score">7.1/10</span></div>
+          <div class="s-rank-req">JEE ~1,15,000 · NIRF 151–200 · NAAC A+</div>
+        </div>
+        <div class="strategy-item">
+          <div class="s-name">Amity Noida<span class="s-score">7.5/10</span></div>
+          <div class="s-rank-req">Own exam · Good brand · High fees warning</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strategy-col">
+      <div class="strategy-header safe-h">✅ Safe Colleges</div>
+      <div class="strategy-body">
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:.8rem;">JEE Rank 1.5L–3L or management/direct admission</div>
+        <div class="strategy-item">
+          <div class="s-name">GL Bajaj Greater Noida<span class="s-score">7.9/10</span></div>
+          <div class="s-rank-req">JEE &gt;1.7L or mgmt quota · ₹4.2L · Best ROI</div>
+        </div>
+        <div class="strategy-item">
+          <div class="s-name">AKGEC Ghaziabad<span class="s-score">7.3/10</span></div>
+          <div class="s-rank-req">Mgmt quota w/o JEE · 90% placed · NAAC A+</div>
+        </div>
+        <div class="strategy-item">
+          <div class="s-name">NIET Greater Noida<span class="s-score">6.8/10</span></div>
+          <div class="s-rank-req">Direct admission · NBA accredited</div>
+        </div>
+        <div class="strategy-item">
+          <div class="s-name">JSSATE Noida<span class="s-score">7.1/10</span></div>
+          <div class="s-rank-req">Direct admission · JSS Group · AKTU</div>
+        </div>
+        <div class="strategy-item">
+          <div class="s-name">VIPS Delhi<span class="s-score">6.1/10</span></div>
+          <div class="s-rank-req">NAAC A++ · IPU CET · BTech program maturing</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strategy-col">
+      <div class="strategy-header verysafe-h">🛡 Very Safe (Fallback)</div>
+      <div class="strategy-body">
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:.8rem;">No JEE required · Direct / own exam admission</div>
+        <div class="strategy-item">
+          <div class="s-name">Sharda University<span class="s-score">7.6/10</span></div>
+          <div class="s-rank-req">SUAT / JEE any score · 91% BTech · ₹13.6L</div>
+        </div>
+        <div class="strategy-item">
+          <div class="s-name">Galgotias University<span class="s-score">6.7/10</span></div>
+          <div class="s-rank-req">CUET / Direct · ₹6.8L · NAAC A+ · Easiest</div>
+        </div>
+        <div style="margin-top:1rem;padding:1rem;background:var(--amber-light);border-radius:8px;font-size:12.5px;color:var(--amber);">
+          ⚠️ Always try for a higher category first. Even if you secure admission via management quota at GL Bajaj, pursue counselling rounds simultaneously — better placements come with better college ecosystem.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <h4>📋 Final Recommendation — For an Average JEE Profile Student</h4>
+    <ul>
+      <li><strong>Priority 1:</strong> Apply GGSIPU IPU CET counselling and aim for BPIT / BVCOE / MSIT (JEE rank 1L–1.5L, Delhi quota). These offer the best combination of Delhi location, regulated fees, and placements.</li>
+      <li><strong>Priority 2:</strong> Register for UPTAC (UP Technical Admission Counselling) and target GL Bajaj CSE or CSE (AI&ML). Best ROI in all of Delhi NCR with a JEE rank &gt;1.7L.</li>
+      <li><strong>Priority 3:</strong> If JEE score is very low, go for AKGEC Ghaziabad management quota. No JEE rank needed, just 65% PCM in Class 12. 90%+ placement and NAAC A+.</li>
+      <li><strong>Avoid:</strong> Bennett University and Amity Noida unless fees are not a concern — the outcomes do not justify ₹16–20L of investment for an average student profile.</li>
+      <li><strong>Avoid entirely:</strong> Any college without NAAC accreditation, NBA for CSE, or AICTE approval. These are warning signs of poor regulatory compliance and placement quality.</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<div class="report-footer">
+  <strong>Delhi NCR BTech CSE Research Report 2025–26</strong><br>
+  Data sourced from NIRF 2025, official college placement reports, Careers360, Collegedunia, Shiksha, and GGSIPU/AKTU official portals.<br>
+  This report is for informational purposes. Verify all data independently before making admission decisions. Package figures represent ranges and may differ by branch, batch, and year.
+</div>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    const id = 'sec-' + btn.dataset.tab;
+    document.getElementById(id).classList.add('active');
+    if(btn.dataset.tab === 'charts') { setTimeout(initCharts, 50); }
+  });
+});
+
+let chartsInit = false;
+function initCharts() {
+  if(chartsInit) return;
+  chartsInit = true;
+
+  const labels = ['JIIT','BPIT','MAIT','GL Bajaj','Sharda','Amity','AKGEC','MSIT','KIET','BVCOE','NIET','JSSATE','Galgotias','VIPS','Bennett'];
+  const pkgData = [11.3,9,8,7.4,7,8,5.5,6.5,5.4,6,6,5.5,4.8,9,9.5];
+  const pctData = [85,95,70,90,91,80,90,75,77,70,70,75,75,60,85];
+  const feeData = [15,8,7.4,4.2,13.6,16,6.2,7.4,7,7.2,10,7,6.8,7,19];
+  const roiData = pkgData.map((p,i) => parseFloat((p*4/feeData[i]).toFixed(2)));
+  const scores = [8.3,8.2,7.6,7.9,7.6,7.5,7.3,7.3,7.1,7.1,6.8,7.1,6.7,6.1,6.8];
+  const difficulty = [9,5,6,3,2,4,5,6,5,5,4,4,2,5,5];
+
+  const COLORS = {
+    blue: '#1A3A5C', teal: '#0A7EA4', green: '#1D7A3A', gold: '#D4A017',
+    red: '#B91C1C', purple: '#5B21B6', light: '#E1F4FB'
+  };
+
+  new Chart(document.getElementById('pkgChart'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Avg CSE Pkg (LPA)',
+        data: pkgData,
+        backgroundColor: pkgData.map(v => v >= 9 ? '#5B21B6' : v >= 7 ? '#0A7EA4' : v >= 5.5 ? '#1D7A3A' : '#B45309'),
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '₹' + c.raw + ' LPA' } } },
+      scales: { y: { beginAtZero: true, ticks: { callback: v => '₹'+v+'L' }, grid: { color: '#E2E8F0' } }, x: { grid: { display: false }, ticks: { font: { size: 10 } } } }
+    }
+  });
+
+  new Chart(document.getElementById('pctChart'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Placement %',
+        data: pctData,
+        backgroundColor: pctData.map(v => v >= 90 ? '#1D7A3A' : v >= 75 ? '#B45309' : '#B91C1C'),
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.raw + '%' } } },
+      scales: { x: { beginAtZero: true, max: 100, ticks: { callback: v => v+'%' } }, y: { grid: { display: false }, ticks: { font: { size: 10 } } } }
+    }
+  });
+
+  new Chart(document.getElementById('scatterChart'), {
+    type: 'scatter',
+    data: {
+      datasets: [{
+        label: 'Colleges',
+        data: feeData.map((f, i) => ({ x: f, y: pkgData[i], label: labels[i] })),
+        backgroundColor: pkgData.map((p, i) => {
+          if(feeData[i] < 8 && p >= 7) return '#1D7A3A';
+          if(feeData[i] > 12) return '#B91C1C';
+          return '#0A7EA4';
+        }),
+        pointRadius: 7,
+        pointHoverRadius: 9,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const d = ctx.raw;
+              const name = ctx.dataset.data.indexOf(d) >= 0 ? labels[ctx.dataIndex] : '';
+              return name + ': Fee ₹' + d.x + 'L | Pkg ₹' + d.y + 'L';
+            }
+          }
+        }
+      },
+      scales: {
+        x: { title: { display: true, text: '4-yr Total Cost (Lakhs)' }, min: 2, max: 21, grid: { color: '#E2E8F0' } },
+        y: { title: { display: true, text: 'CSE Avg Package (LPA)' }, min: 3, max: 13, grid: { color: '#E2E8F0' } }
+      }
+    },
+    plugins: [{
+      afterDraw: chart => {
+        const ctx = chart.ctx;
+        chart.data.datasets[0].data.forEach((d, i) => {
+          const meta = chart.getDatasetMeta(0);
+          const pt = meta.data[i];
+          ctx.fillStyle = '#0F172A'; ctx.font = '9px Segoe UI'; ctx.textAlign = 'center';
+          ctx.fillText(labels[i], pt.x, pt.y - 10);
+        });
+      }
+    }]
+  });
+
+  new Chart(document.getElementById('roiChart'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'ROI Index',
+        data: roiData,
+        backgroundColor: roiData.map(v => v >= 5 ? '#1D7A3A' : v >= 3 ? '#0A7EA4' : '#B91C1C'),
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => 'ROI: ' + c.raw + '×' } } },
+      scales: { y: { beginAtZero: true, grid: { color: '#E2E8F0' } }, x: { grid: { display: false }, ticks: { font: { size: 10 } } } }
+    }
+  });
+
+  new Chart(document.getElementById('bubbleChart'), {
+    type: 'bubble',
+    data: {
+      datasets: [{
+        label: 'Dream',
+        data: [
+          { x: difficulty[0], y: scores[0], r: feeData[0]*0.8, label: labels[0] },
+          { x: difficulty[14], y: scores[14], r: feeData[14]*0.8, label: labels[14] },
+        ],
+        backgroundColor: 'rgba(91,33,182,0.4)',
+        borderColor: '#5B21B6', borderWidth: 1.5,
+      },{
+        label: 'Target',
+        data: [2,7,8,9,11].map(i => ({ x: difficulty[i], y: scores[i], r: feeData[i]*0.8, label: labels[i] })),
+        backgroundColor: 'rgba(29,78,216,0.35)',
+        borderColor: '#1D4ED8', borderWidth: 1.5,
+      },{
+        label: 'Safe',
+        data: [3,6,10,13].map(i => ({ x: difficulty[i], y: scores[i], r: feeData[i]*0.8, label: labels[i] })),
+        backgroundColor: 'rgba(29,122,58,0.35)',
+        borderColor: '#1D7A3A', borderWidth: 1.5,
+      },{
+        label: 'Very Safe',
+        data: [4,12].map(i => ({ x: difficulty[i], y: scores[i], r: feeData[i]*0.8, label: labels[i] })),
+        backgroundColor: 'rgba(180,83,9,0.35)',
+        borderColor: '#B45309', borderWidth: 1.5,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      layout: { padding: 20 },
+      plugins: {
+        legend: { display: true, position: 'top', labels: { font: { size: 11 } } },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const d = ctx.raw;
+              return d.label + ' | Difficulty: ' + d.x + '/10 | Score: ' + d.y + '/10';
+            }
+          }
+        }
+      },
+      scales: {
+        x: { title: { display: true, text: 'Admission Difficulty (1=Easy, 10=Hard)' }, min: 0, max: 11, grid: { color: '#E2E8F0' } },
+        y: { title: { display: true, text: 'Weighted Score (out of 10)' }, min: 5, max: 9.5, grid: { color: '#E2E8F0' } }
+      }
+    },
+    plugins: [{
+      afterDraw: chart => {
+        const ctx2 = chart.ctx;
+        chart.data.datasets.forEach(ds => {
+          const meta = chart.getDatasetMeta(chart.data.datasets.indexOf(ds));
+          ds.data.forEach((d, i) => {
+            const pt = meta.data[i];
+            if(pt) {
+              ctx2.fillStyle = '#0F172A'; ctx2.font = 'bold 9px Segoe UI'; ctx2.textAlign = 'center';
+              ctx2.fillText(d.label, pt.x, pt.y - pt.options.radius - 4);
+            }
+          });
+        });
+      }
+    }]
+  });
+}
+</script>
+
+</body>
+</html>
